@@ -11,11 +11,10 @@ public class Quest : ScriptableObject
 
     [SerializeField] private bool _isRandomNPC;
 
-    [SerializeField] [EnableIf("_isRandomNPC")] private NPC _character;
+    [SerializeField] [DisableIf("_isRandomNPC")] private Character _character;
     [SerializeField] [TextArea] private string _requestSentence;
 
     [Header("Wrong Outcomes")]
-    [SerializeField] private Spell[] _wrongSpells;
     [SerializeField] [TextArea] private string _wrongSentence;
     
     [Header("Medium Outcomes")]
@@ -38,41 +37,17 @@ public class Quest : ScriptableObject
 
     #region Properties
 
-    public NPC Character => _character;
-
+    public Character Character => _character;
     public string RequestSentence => _requestSentence;
-
-    public Spell[] WrongSpells => _wrongSpells;
-
     public string WrongSentence => _wrongSentence;
-    
     public Spell[] MediumSpells => _mediumSpells;
-
     public string MediumSentence => _mediumSentence;
-    
     public Spell[] GoodSpells => _goodSpells;
-
     public string GoodSentence => _goodSentence;
-    
     public Spell[] PerfectSpells => _perfectSpells;
-
     public string PerfectSentence => _perfectSentence;
-    
     public Spell[] SpecialSpells => _specialSpells;
-
     public string SpecialSentence => _specialSentence;
-
-    #endregion
-
-    #region Public Methods
-
-    public void Initialize()
-    {
-        if (_isRandomNPC)
-        {
-            //définir les visuels du NPC
-        }
-    }
 
     #endregion
 }

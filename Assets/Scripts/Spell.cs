@@ -1,20 +1,25 @@
 using System;
+using UnityEngine;
 
 [Serializable]
-public struct Spell
+[CreateAssetMenu(menuName = "ScriptableObjects/Spell", fileName = "newSpell")]
+public class Spell : ScriptableObject
 {
     #region Fields
-
-    private Attribute _firstAttribute;
-    private Attribute _secondAttribute;
-
+    
+    [SerializeField] private int _id;
+    
+    [SerializeField] private Attribute _firstAttribute;
+    [SerializeField] private Attribute _secondAttribute;
+    
     #endregion
-
+    
     #region Properties
-
+    
+    public int Id => _id;
     public Attribute FirstAttribute => _firstAttribute;
     public Attribute SecondAttribute => _secondAttribute;
-
+    
     #endregion
 }
 
@@ -23,7 +28,7 @@ public enum Attribute
     None,
     Fire,
     Water,
-    Lightning,
+    Steel,
     Furniture,
     Plants,
     LivingBeing,
@@ -32,5 +37,7 @@ public enum Attribute
     Rain,
     Cleaning,
     Growth,
-    Throw,
+    Move,
+    Stop,
+    Repair,
 }

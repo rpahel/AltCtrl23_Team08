@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c02e96b9bb7e88468d42dfc29b63336, type: 3}
+  m_Name: NPC_Test
+  m_EditorClassIdentifier: 
+  _normalSprite: {fileID: 21300000, guid: b96eb7c0bb3139f429318a01276c1207, type: 3}
+  _badSprite: {fileID: 21300000, guid: 6d5ad7d834a80e442b0415f8495f84e2, type: 3}
+  _goodSprite: {fileID: 21300000, guid: aebf3745b72cda04591ea64c2558be44, type: 3}
+  _perfectSprite: {fileID: 21300000, guid: 3d787aac99f5bde4f96d7410a40d90f8, type: 3}
+  _specialSprite: {fileID: 21300000, guid: c86145c2842c26d438835429f494c5c5, type: 3}
