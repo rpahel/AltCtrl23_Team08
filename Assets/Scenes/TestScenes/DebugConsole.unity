@@ -227,6 +227,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConsoleCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5905788273541474973, guid: 7e954d02721f5ab45afbb2c9a61ffd2b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5905788273541474973, guid: 7e954d02721f5ab45afbb2c9a61ffd2b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6931306413034663335, guid: 7e954d02721f5ab45afbb2c9a61ffd2b, type: 3}
+      propertyPath: _consoleKey
+      value: 282
+      objectReference: {fileID: 0}
     - target: {fileID: 7685501165769391758, guid: 7e954d02721f5ab45afbb2c9a61ffd2b, type: 3}
       propertyPath: m_Pivot.x
       value: 0

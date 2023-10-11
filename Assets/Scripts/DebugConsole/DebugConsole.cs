@@ -13,6 +13,7 @@ namespace ScrollShop.DebugConsole
         public static DebugConsole Instance => _instance;
 
         //== Fields =======================================================
+        [SerializeField] private KeyCode _consoleKey;
         [SerializeField] private GameObject _consoleDebugLine;
         [SerializeField] private RectTransform _consoleContent;
         [SerializeField] private TMP_InputField _consoleInput;
@@ -84,6 +85,12 @@ namespace ScrollShop.DebugConsole
         {
             _consoleInput.onSubmit.AddListener(ClearInputField);
             _consoleInput.onSubmit.AddListener(DoCommand);
+        }
+
+        private void Update()
+        {
+            if(Input.GetKeyDown(_consoleKey))
+                ToggleConsole();
         }
 
         private void OnDestroy()
