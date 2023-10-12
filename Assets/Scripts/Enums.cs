@@ -12,7 +12,7 @@ namespace ScrollShop.Enums
         NONE,
         FIRE,
         WATER,
-        LIGHTNING,
+        IRON,
         FURNITURE,
         PLANTS,
         LIVINGBEINGS,
@@ -21,6 +21,8 @@ namespace ScrollShop.Enums
         RAIN,
         CLEANING,
         GROWTH,
-        THROW,
+        MOVE,
+        STOP,
+        REPAIR,
     }
 }

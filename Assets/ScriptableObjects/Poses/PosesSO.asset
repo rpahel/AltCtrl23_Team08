@@ -51,7 +51,7 @@ MonoBehaviour:
     _attribute: 12
   - _name: Stopper
     _id: 13
-    _attribute: 12
+    _attribute: 13
   - _name: Reparer
     _id: 14
-    _attribute: 12
+    _attribute: 14
