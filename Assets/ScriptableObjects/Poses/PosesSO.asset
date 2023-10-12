@@ -13,9 +13,45 @@ MonoBehaviour:
   m_Name: PosesSO
   m_EditorClassIdentifier: 
   _poses:
-  - _name: NomDeLaPose
+  - _name: Feu
     _id: 1
     _attribute: 1
-  - _name: Ugo
+  - _name: Eau
     _id: 2
+    _attribute: 2
+  - _name: Acier
+    _id: 3
+    _attribute: 3
+  - _name: Mobilier
+    _id: 4
+    _attribute: 4
+  - _name: Plante
+    _id: 5
+    _attribute: 5
+  - _name: Vivant
+    _id: 6
+    _attribute: 6
+  - _name: Explosion
+    _id: 7
+    _attribute: 7
+  - _name: Mur
+    _id: 8
+    _attribute: 8
+  - _name: Pluie
+    _id: 9
     _attribute: 9
+  - _name: Nettoyer
+    _id: 10
+    _attribute: 10
+  - _name: Croissance
+    _id: 11
+    _attribute: 11
+  - _name: Deplacer
+    _id: 12
+    _attribute: 12
+  - _name: Stopper
+    _id: 13
+    _attribute: 12
+  - _name: Reparer
+    _id: 14
+    _attribute: 12
