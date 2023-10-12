@@ -32,8 +32,7 @@ public class GameManager : MonoBehaviour
     private readonly List<Character> _characterBuffer = new();
     private Character _currentCharacter;
 
-    private float _firstCrystalBallEnergy;
-    private float _secondCrystalBallEnergy;
+    private float _crystalBallEnergy;
 
     #endregion
 
@@ -55,6 +54,20 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         InitializeRound();
+    }
+
+    private void Update()
+    {
+        if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
+        {
+            var speed = Mathf.Abs(Input.GetAxis("Mouse X")) + Mathf.Abs(Input.GetAxis("Mouse Y"));
+
+            if (speed > 15f)
+            {
+                _crystalBallEnergy++;
+                Debug.Log(_crystalBallEnergy);
+            }
+        }
     }
 
     #endregion
@@ -104,7 +117,12 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator PlayRound()
     {
-        var poseId = 32;
+        var poseId = 0;
+        
+        while (_crystalBallEnergy < 100f)
+        {
+            yield return new WaitForEndOfFrame();
+        }
         
         yield return new WaitForSeconds(5f);
         
@@ -154,7 +172,7 @@ public class GameManager : MonoBehaviour
         }
         
         _characterImage.sprite = _currentCharacter.BadSprite;
-        _textZone.text = _currentQuest.WrongSentence;
+        _textZone.text = _currentQuest.BadSentence;
     }
 
     #endregion

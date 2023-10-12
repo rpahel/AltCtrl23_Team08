@@ -44,9 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eca9ab0a984f3c4daf8eb1154e38812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _headAssets: []
-  _bodyAssets: []
   _quests:
   - {fileID: 11400000, guid: b4a07defef256164f96e12b1da15b2ce, type: 2}
+  _characters:
+  - {fileID: 11400000, guid: 9c21d01ffa693f84cbbc77808ca666b6, type: 2}
   _textZone: {fileID: 0}
-  _npcImage: {fileID: 0}
+  _characterImage: {fileID: 0}
+  _roundCount: 8

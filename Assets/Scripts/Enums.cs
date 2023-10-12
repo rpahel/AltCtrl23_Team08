@@ -21,6 +21,8 @@ namespace ScrollShop.Enums
         RAIN,
         CLEANING,
         GROWTH,
-        THROW,
+        MOVE,
+        STOP,
+        REPAIR
     }
 }

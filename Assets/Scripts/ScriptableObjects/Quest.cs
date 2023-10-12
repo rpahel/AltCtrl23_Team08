@@ -13,9 +13,9 @@ public class Quest : ScriptableObject
 
     [SerializeField] [DisableIf("_isRandomNPC")] private Character _character;
     [SerializeField] [TextArea] private string _requestSentence;
-
+    
     [Header("Wrong Outcomes")]
-    [SerializeField] [TextArea] private string _wrongSentence;
+    [SerializeField] [TextArea] private string _badSentence;
     
     [Header("Medium Outcomes")]
     [SerializeField] private Spell[] _mediumSpells;
@@ -39,7 +39,7 @@ public class Quest : ScriptableObject
 
     public Character Character => _character;
     public string RequestSentence => _requestSentence;
-    public string WrongSentence => _wrongSentence;
+    public string BadSentence => _badSentence;
     public Spell[] MediumSpells => _mediumSpells;
     public string MediumSentence => _mediumSentence;
     public Spell[] GoodSpells => _goodSpells;
