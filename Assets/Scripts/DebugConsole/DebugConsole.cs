@@ -4,7 +4,7 @@ using ScrollShop.Enums;
 using TMPro;
 using UnityEngine;
 
-namespace ScrollShop.DebugConsole
+namespace ScrollShop.CustomDebug
 {
     public class DebugConsole : MonoBehaviour
     {
@@ -60,7 +60,7 @@ namespace ScrollShop.DebugConsole
             _methodsDic.Add(method.Method.Name.ToLower(), method);
         }
         
-        public void DeleteFromMethodDictionary(Action<string> method)
+        public void RemoveFromMethodDictionary(Action<string> method)
         {
             _methodsDic.Remove(method.Method.Name.ToLower());
         }
@@ -108,6 +108,7 @@ namespace ScrollShop.DebugConsole
 
         private void DoCommand(string command)
         {
+            Print("Input : " + command);
             string[] arguments = command.Split(' ');
             
             if (!_methodsDic.ContainsKey(arguments[0]))
