@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using ScrollShop.CustomDebug;
+using ScrollShop.Interfaces;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using TMPro;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IDebug
 {
     #region Fields
 
@@ -39,6 +42,24 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    #region Public Methods
+
+    public void AddDebugMethodsToDebugConsole()
+    {
+        if (DebugConsole.Instance == null) return;
+            
+        DebugConsole.Instance.AddToMethodDictionary(ChargeCrystalBall);
+    }
+
+    public void RemoveDebugMethodsFromDebugConsole()
+    {
+        if (DebugConsole.Instance == null) return;
+            
+        DebugConsole.Instance.RemoveFromMethodDictionary(ChargeCrystalBall);
+    }
+
+    #endregion
+
     #region Unity Event Function
 
     private void Awake()
@@ -52,6 +73,8 @@ public class GameManager : MonoBehaviour
         {
             _characterBuffer.Add(_characters[i]);
         }
+        
+        AddDebugMethodsToDebugConsole();
     }
 
     private void Start()
@@ -68,9 +91,13 @@ public class GameManager : MonoBehaviour
             if (speed > 15f)
             {
                 _crystalBallTimer += Time.deltaTime;
-                Debug.Log(_crystalBallTimer);
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        RemoveDebugMethodsFromDebugConsole();
     }
 
     #endregion
@@ -114,7 +141,7 @@ public class GameManager : MonoBehaviour
 
         var character = _characterBuffer[random];
 
-        _characterBuffer.Remove(character);
+        //_characterBuffer.Remove(character);
 
         return character;
     }
@@ -177,6 +204,11 @@ public class GameManager : MonoBehaviour
         
         _characterImage.sprite = _currentCharacter.BadSprite;
         _textZone.text = _currentQuest.BadSentence;
+    }
+    
+    private void ChargeCrystalBall(string s)
+    {
+        _crystalBallTimer += 100f;
     }
 
     #endregion

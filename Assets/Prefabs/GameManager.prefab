@@ -45,9 +45,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _quests:
-  - {fileID: 11400000, guid: b4a07defef256164f96e12b1da15b2ce, type: 2}
+  - {fileID: 11400000, guid: a87268fa9ba620d4dacbaae8fb26ea77, type: 2}
+  - {fileID: 11400000, guid: 25664cf7ffc913d4ab2f7572c49da07f, type: 2}
+  - {fileID: 11400000, guid: 7a4fbdd807e12d94f9df786ea85db3c9, type: 2}
+  - {fileID: 11400000, guid: f31a8cd76ec4ba647b0db69e2e38428a, type: 2}
+  - {fileID: 11400000, guid: 182458268d479684f9ddf64b8e4108ff, type: 2}
+  - {fileID: 11400000, guid: dcc00cc2d426148488ce11e876229e72, type: 2}
+  - {fileID: 11400000, guid: 01615607826fe94428ccd47ca931b9a8, type: 2}
+  - {fileID: 11400000, guid: 4c536268850d5e94da9c8eec1bf087e3, type: 2}
   _characters:
   - {fileID: 11400000, guid: 9c21d01ffa693f84cbbc77808ca666b6, type: 2}
+  - {fileID: 11400000, guid: 2b03a161005d2ee4ba1258928cba4c0b, type: 2}
   _textZone: {fileID: 0}
   _characterImage: {fileID: 0}
   _roundCount: 8
