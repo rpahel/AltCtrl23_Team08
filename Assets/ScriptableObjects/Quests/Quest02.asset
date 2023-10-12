@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abd47cdca8f3d42499b2b3267cdb42c4, type: 3}
+  m_Name: Quest02
+  m_EditorClassIdentifier: 
+  _isRandomNPC: 0
+  _character: {fileID: 0}
+  _requestSentence: '"It''s terrible! My employee made the mistake of mixing my wine
+    with water! It tastes terrible, what am I going to do?"'
+  _badSentence: '"Hum... Ok, je vais croire que cela fonctionnera mais j''en doute."'
+  _mediumSpells:
+  - {fileID: 11400000, guid: b634fec21ffca0d4280e817747019101, type: 2}
+  - {fileID: 11400000, guid: 2b2c546bdd44310428509ad52a9457c4, type: 2}
+  - {fileID: 11400000, guid: 434988535a948f94e92d45a4fd7a1ec4, type: 2}
+  _mediumSentence: "\"Ca am\xE9liorera surement le gout, c'est d\xE9j\xE0 ca.\""
+  _goodSpells:
+  - {fileID: 11400000, guid: 6b467d675122e7d4ab71122147e18550, type: 2}
+  - {fileID: 11400000, guid: 1a457d4eb81c4c64b86988f98f60c697, type: 2}
+  - {fileID: 11400000, guid: 9d8a53ef2b7a6f547b29f31020fb73b5, type: 2}
+  _goodSentence: "\"Ca devrait faire l'affaire, je vais enfin retrouver un vrai go\xFBt
+    de vin.\""
+  _perfectSpells:
+  - {fileID: 11400000, guid: afe9de5ec58750f42ac53214db40f888, type: 2}
+  _perfectSentence: "\"Fantastique ! Je vais enfin pouvoir vendre un vin de qualit\xE9
+    \xE0 mes clients !\""
+  _specialSpells:
+  - {fileID: 11400000, guid: f110eee541b7218429a1ee0db7ccc8db, type: 2}
+  _specialSentence: "\"Vous avez raison, je vais commencer par nettoyer ma vaisselle,
+    j'esp\xE8re que ca fontionnera.\""

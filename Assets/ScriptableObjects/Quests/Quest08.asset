@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abd47cdca8f3d42499b2b3267cdb42c4, type: 3}
+  m_Name: Quest08
+  m_EditorClassIdentifier: 
+  _isRandomNPC: 0
+  _character: {fileID: 0}
+  _requestSentence: The neighbor's dog is driving me crazy! He barks constantly and
+    runs around! Please help me "fix" the problem.
+  _badSentence: '"J''imagine que vous avez une bonne raison de me donner ce sort.
+    Pas vrai ?"'
+  _mediumSpells:
+  - {fileID: 11400000, guid: 946ff9d27a94f2f429cdeb35edb05e50, type: 2}
+  - {fileID: 11400000, guid: 59bf93e26160b214aacae13fb8c4ce76, type: 2}
+  _mediumSentence: "\"Ca devrait au moins me donner un peu de r\xE9pit...\""
+  _goodSpells:
+  - {fileID: 11400000, guid: 0c37f9d8aa834b641acf1b3b8a39adf9, type: 2}
+  - {fileID: 11400000, guid: ce55d1f5525b93443b380a77e42a134d, type: 2}
+  - {fileID: 11400000, guid: 6f54c68ee147c2648bb18875fb0f89c3, type: 2}
+  _goodSentence: "\"Tr\xE8s int\xE9ressant, mais dommage qu'il n'y soit pas plus
+    efficace.\""
+  _perfectSpells:
+  - {fileID: 11400000, guid: a7c7e11085cf63c41bc0092a04c07f7a, type: 2}
+  _perfectSentence: "\"Je pourrais l'arr\xEAter quand je le voudrais maintenant.
+    Enfin de la paix.\""
+  _specialSpells:
+  - {fileID: 11400000, guid: 3052db1212aa1f440a10ad30fd359cea, type: 2}
+  - {fileID: 11400000, guid: dbb604da507cb924db9a3a76aed9b1ed, type: 2}
+  _specialSentence: '"Je trouve ca un peu excessif, mais ca me permettra de retrouver
+    la paix."'
