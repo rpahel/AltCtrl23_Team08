@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     
     [Header("Game Settings")]
     [SerializeField] private int _roundCount = 8;
+    [SerializeField] private float _timeToChargeEnergy = 3f;
+    [SerializeField] private float _timeToTakePose = 7f;
+    [SerializeField] private float _timeBeforeNextRound = 10f;
 
     private int _roundNum = 0;
 
@@ -32,7 +35,7 @@ public class GameManager : MonoBehaviour
     private readonly List<Character> _characterBuffer = new();
     private Character _currentCharacter;
 
-    private float _crystalBallEnergy;
+    private float _crystalBallTimer;
 
     #endregion
 
@@ -64,8 +67,8 @@ public class GameManager : MonoBehaviour
 
             if (speed > 15f)
             {
-                _crystalBallEnergy++;
-                Debug.Log(_crystalBallEnergy);
+                _crystalBallTimer += Time.deltaTime;
+                Debug.Log(_crystalBallTimer);
             }
         }
     }
@@ -77,6 +80,7 @@ public class GameManager : MonoBehaviour
     private void InitializeRound()
     {
         _roundNum++;
+        _crystalBallTimer = 0f;
 
         if (_roundNum >= _roundCount || _questBuffer.Count == 0 || _characterBuffer.Count == 0)
         {
@@ -118,17 +122,17 @@ public class GameManager : MonoBehaviour
     private IEnumerator PlayRound()
     {
         var poseId = 0;
-        
-        while (_crystalBallEnergy < 100f)
+
+        while (_crystalBallTimer < _timeToChargeEnergy)
         {
             yield return new WaitForEndOfFrame();
         }
         
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(_timeToTakePose);
         
         UpdateCharacter(poseId);
 
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(_timeBeforeNextRound);
         
         InitializeRound();
     }

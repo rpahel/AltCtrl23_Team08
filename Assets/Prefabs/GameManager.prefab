@@ -51,3 +51,6 @@ MonoBehaviour:
   _textZone: {fileID: 0}
   _characterImage: {fileID: 0}
   _roundCount: 8
+  _timeToChargeEnergy: 5
+  _timeToTakePose: 7
+  _timeBeforeNextRound: 10
