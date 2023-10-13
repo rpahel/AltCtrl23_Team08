@@ -14,21 +14,20 @@ namespace ScrollShop.AI
     public class Bridge : ScriptableObject, IDebug
     {
         //== Fields ================================
-        
         [SerializeField, BoxGroup("Poses")]
         private int _numberOfPlayers = 2;
         [SerializeField, BoxGroup("Poses")]
-        private Poses _posesSO;
+        private PosesSO posesSo;
         [SerializeField, BoxGroup("Debug")]
         private bool _ignoreAi;
         
         private event Action<int, Pose> OnPoseChanged; //Action<index, Pose>
         private Dictionary<string, Pose> _posesDatabase;
         private Pose[] _previousPoses; // Does NOT remember ALL previous poses, but the last previous pose of each player index.
+        private Pose[] _currentPoses; // Stock current pose per player index
         
         //== Interface implementations =============
-        
-        public void AddDebugMethodsToDebugConsole()
+        public void SubscribeToDebugConsole()
         {
             if (DebugConsole.Instance == null)
                 return;
@@ -37,7 +36,7 @@ namespace ScrollShop.AI
             DebugConsole.Instance.AddToMethodDictionary(BridgeSetPose);
         }
     
-        public void RemoveDebugMethodsFromDebugConsole()
+        public void UnsubscribeFromDebugConsole()
         {
             if (DebugConsole.Instance == null)
                 return;
@@ -47,25 +46,25 @@ namespace ScrollShop.AI
         }
         
         //== Public methods ========================
-        
         public void Initialize()
         {
-            AddDebugMethodsToDebugConsole();
+            SubscribeToDebugConsole();
             
-            if (_posesSO == null || _posesSO.GetPoses == null)
+            if (posesSo == null || posesSo.GetPoses == null)
             {
                 Print("Bridge: _posesSO is null !", LOGTYPE.ERROR);
                 return;
             }
     
-            if (_posesSO.GetPoses.Length <= 0)
+            if (posesSo.GetPoses.Length <= 0)
             {
                 Print("Bridge: _posesSO is empty !", LOGTYPE.WARNING);
                 return;
             }
             
-            // Previous poses initialiser
+            // Previous & current poses initialiser
             _previousPoses = new Pose[_numberOfPlayers];
+            _currentPoses = new Pose[_numberOfPlayers];
     
             // Database check;
             if (_posesDatabase == null)
@@ -73,7 +72,7 @@ namespace ScrollShop.AI
                 Print("Bridge: _posesDatabase is null. Building it...");
                 FillDatabase();
             }
-            else if (_posesDatabase.Count != _posesSO.GetPoses.Length)
+            else if (_posesDatabase.Count != posesSo.GetPoses.Length)
             {
                 // Database and poses array don't match.
                 // Database needs to be rebuilt.
@@ -84,29 +83,76 @@ namespace ScrollShop.AI
         
         public void Terminate()
         {
-            RemoveDebugMethodsFromDebugConsole();
+            UnsubscribeFromDebugConsole();
 
             OnPoseChanged = null;
             _previousPoses = null;
+            _currentPoses = null;
             _posesDatabase.Clear();
+        }
+
+        public void SetPose(int index, string poseName)
+        {
+            if (_posesDatabase is not {Count: > 0})
+            {
+                Print("Bridge: _posesDatabase is null or empty", LOGTYPE.ERROR);
+                return;
+            }
+
+            if (index < 0 || index >= _numberOfPlayers)
+            {
+                Print($"Bridge: SetPose -> index is outside the bounds of the array (index = {index}).", LOGTYPE.ERROR);
+                return;
+            }
+
+            string lowerCaseName = poseName.ToLower();
+
+            if (!_posesDatabase.ContainsKey(lowerCaseName))
+            {
+                Print($"Bridge: SetPose -> could not find pose of name \"{poseName}\" in _posesDatabase.", LOGTYPE.ERROR);
+                return;
+            }
+
+            Pose matchPose = _posesDatabase[lowerCaseName];
+
+            if (_currentPoses[index].GetId == matchPose.GetId)
+            {
+                // Given pose is already current pose
+                return;
+            }
+
+            // Every check has passed, lets gooo
+            _previousPoses[index] = _currentPoses[index];
+            _currentPoses[index] = matchPose;
+            
+            OnPoseChanged?.Invoke(index, matchPose);
+        }
+
+        public void SubscribeToPoseChangedEvent(Action<int, Pose> method)
+        {
+            OnPoseChanged += method;
+        }
+        
+        public void UnsubscribeFromPoseChangedEvent(Action<int, Pose> method)
+        {
+            OnPoseChanged -= method;
         }
         
         //== Private methods =======================
-    
         private void FillDatabase()
         {
             _posesDatabase?.Clear();
             _posesDatabase = new Dictionary<string, Pose>();
-            foreach (var pose in _posesSO.GetPoses)
+            foreach (var pose in posesSo.GetPoses)
                 _posesDatabase.Add(pose.GetName.ToLower(), pose);
         }
     
         //== Debug methods =========================
-        
         private void BridgeToggleIgnoreAI(string s)
         {
             string[] arguments = s.Split(' ');
             int secondArgument = -1;
+            
             if (arguments.Length > 1 && arguments[1] != null)
                 int.TryParse(arguments[1], out secondArgument);
     

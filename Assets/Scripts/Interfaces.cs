@@ -2,7 +2,13 @@ namespace ScrollShop.Interfaces
 {
     interface IDebug
     {
-        public void AddDebugMethodsToDebugConsole();
-        public void RemoveDebugMethodsFromDebugConsole();
+        void SubscribeToDebugConsole();
+        void UnsubscribeFromDebugConsole();
+    }
+
+    interface IBridgeDependent
+    {
+        void SubscribeToPoseChangedEvent();
+        void UnsubscribeFromPoseChangedEvent();
     }
 }

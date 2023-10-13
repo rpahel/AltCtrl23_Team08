@@ -44,14 +44,14 @@ public class GameManager : MonoBehaviour, IDebug
 
     #region Public Methods
 
-    public void AddDebugMethodsToDebugConsole()
+    public void SubscribeToDebugConsole()
     {
         if (DebugConsole.Instance == null) return;
             
         DebugConsole.Instance.AddToMethodDictionary(ChargeCrystalBall);
     }
 
-    public void RemoveDebugMethodsFromDebugConsole()
+    public void UnsubscribeFromDebugConsole()
     {
         if (DebugConsole.Instance == null) return;
             
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour, IDebug
             _characterBuffer.Add(_characters[i]);
         }
         
-        AddDebugMethodsToDebugConsole();
+        SubscribeToDebugConsole();
     }
 
     private void Start()
@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour, IDebug
 
     private void OnDestroy()
     {
-        RemoveDebugMethodsFromDebugConsole();
+        UnsubscribeFromDebugConsole();
     }
 
     #endregion

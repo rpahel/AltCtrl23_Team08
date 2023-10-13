@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BridgeSO
   m_EditorClassIdentifier: 
   _numberOfPlayers: 2
-  _posesSO: {fileID: 11400000, guid: 31f64886c40b06c4dbe65701ff1a6a90, type: 2}
+  posesSo: {fileID: 11400000, guid: 31f64886c40b06c4dbe65701ff1a6a90, type: 2}
   _ignoreAi: 0

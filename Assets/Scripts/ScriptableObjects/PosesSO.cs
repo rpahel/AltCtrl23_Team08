@@ -5,7 +5,7 @@ using Pose = ScrollShop.Structs.Pose;
 namespace ScrollShop.ScriptableObjects
 {
     [CreateAssetMenu(fileName = "PosesSO", menuName = "ScriptableObjects/PosesSO")]
-    public class Poses : ScriptableObject
+    public class PosesSO : ScriptableObject
     {
         [SerializeField] private Pose[] _poses;
 
