@@ -14,26 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isRandomNPC: 0
   _character: {fileID: 0}
-  _requestSentence: '"A murder has been committed! Someone has decapitated the king''s
-    hedge statue."'
-  _badSentence: "\"Je n'ai pas confiance en se sort, mais vous avez peut-\xEAtre
-    raison.\""
+  _requestSentence: A murder has been committed! Someone has decapitated the king's
+    hedge statue.
+  _badSentence: I don't trust this spell, but maybe you're right.
   _mediumSpells:
   - {fileID: 11400000, guid: f0c3f0f5381d4aa40ac000912358fbc3, type: 2}
   - {fileID: 11400000, guid: 3505f568205a1c542bd897138c3e19cc, type: 2}
   - {fileID: 11400000, guid: 0c37f9d8aa834b641acf1b3b8a39adf9, type: 2}
-  _mediumSentence: '"Disons qu''au moins ca ne sera plus catastophique..."'
+  _mediumSentence: Let's just say that at least it won't be catastrophic anymore...
   _goodSpells:
   - {fileID: 11400000, guid: bc813d61ed698934daf5ffd1f443a402, type: 2}
   - {fileID: 11400000, guid: 2b4481b2bc8f51f4ab8fb7ec9fe25da9, type: 2}
   - {fileID: 11400000, guid: 67e8cf6755a00d945bb4c52a7f2eefde, type: 2}
-  _goodSentence: "\"Ca va encore demander du travail, mais je vais bien pouvoir limiter
-    les d\xE9g\xE2ts.\""
+  _goodSentence: Thanks! It's still going to take some work, but I'll be able to
+    limit the damage.
   _perfectSpells:
   - {fileID: 11400000, guid: 97388ccb1ce94ca4d8e3779ebd37d6b8, type: 2}
-  _perfectSentence: "\"Un miracle va se produire! Le roi retrouvera sa t\xEAte!\""
+  _perfectSentence: A miracle will happen! The king will get his head back!
   _specialSpells:
   - {fileID: 11400000, guid: dbb604da507cb924db9a3a76aed9b1ed, type: 2}
   - {fileID: 11400000, guid: a0a271c6d31c42a48af33de660f68a69, type: 2}
-  _specialSentence: "\"Excellent, je vais d\xE9clencher un incendie pour cacher cette
-    erreur ! Ma r\xE9putation de jardinier sera sauve !\""
+  _specialSentence: Clever! I'll start a fire to hide this mistake! My reputation
+    as a gardener will be saved!

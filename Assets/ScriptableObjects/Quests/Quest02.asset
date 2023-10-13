@@ -14,25 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isRandomNPC: 0
   _character: {fileID: 0}
-  _requestSentence: '"It''s terrible! My employee made the mistake of mixing my wine
-    with water! It tastes terrible, what am I going to do?"'
-  _badSentence: '"Hum... Ok, je vais croire que cela fonctionnera mais j''en doute."'
+  _requestSentence: It's terrible! My employee made the mistake of mixing my wine
+    with water! It tastes terrible, what am I going to do?
+  _badSentence: Um... Okay, I'm going to believe that this will work, but I doubt
+    it.
   _mediumSpells:
   - {fileID: 11400000, guid: b634fec21ffca0d4280e817747019101, type: 2}
   - {fileID: 11400000, guid: 2b2c546bdd44310428509ad52a9457c4, type: 2}
   - {fileID: 11400000, guid: 434988535a948f94e92d45a4fd7a1ec4, type: 2}
-  _mediumSentence: "\"Ca am\xE9liorera surement le gout, c'est d\xE9j\xE0 ca.\""
+  _mediumSentence: It'll probably improve the taste, that's something.
   _goodSpells:
   - {fileID: 11400000, guid: 6b467d675122e7d4ab71122147e18550, type: 2}
   - {fileID: 11400000, guid: 1a457d4eb81c4c64b86988f98f60c697, type: 2}
   - {fileID: 11400000, guid: 9d8a53ef2b7a6f547b29f31020fb73b5, type: 2}
-  _goodSentence: "\"Ca devrait faire l'affaire, je vais enfin retrouver un vrai go\xFBt
-    de vin.\""
+  _goodSentence: This should do the trick, it'll finally get back a wine taste.
   _perfectSpells:
   - {fileID: 11400000, guid: afe9de5ec58750f42ac53214db40f888, type: 2}
-  _perfectSentence: "\"Fantastique ! Je vais enfin pouvoir vendre un vin de qualit\xE9
-    \xE0 mes clients !\""
+  _perfectSentence: Fantastic! I'll finally be able to sell a quality wine to my
+    customers!
   _specialSpells:
   - {fileID: 11400000, guid: f110eee541b7218429a1ee0db7ccc8db, type: 2}
-  _specialSentence: "\"Vous avez raison, je vais commencer par nettoyer ma vaisselle,
-    j'esp\xE8re que ca fontionnera.\""
+  _specialSentence: You're right, I'll start by cleaning my dishes, I hope it'll
+    work.
