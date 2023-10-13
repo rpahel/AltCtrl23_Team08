@@ -15,26 +15,38 @@ public class GameManager : MonoBehaviour, IDebug
     // [Header("NPC Assets")]
     // [SerializeField] private Sprite[] _headAssets;
     // [SerializeField] private Sprite[] _bodyAssets;
-    
+
     [Header("Scriptable Objects")]
     [SerializeField] private Quest[] _quests;
     [SerializeField] private Character[] _characters;
 
-    [Header("UI")] 
+    [Header("UI")]
     [SerializeField] private TextMeshProUGUI _textZone;
     [SerializeField] private Image _characterImage;
-    
+    [SerializeField] private GameObject _scorePanel;
+    [SerializeField] private TextMeshProUGUI _scoreText;
+
     [Header("Game Settings")]
     [SerializeField] private int _roundCount = 8;
     [SerializeField] private float _timeToChargeEnergy = 3f;
     [SerializeField] private float _timeToTakePose = 7f;
     [SerializeField] private float _timeBeforeNextRound = 10f;
+    [SerializeField] private float _sensiCrsytalBall = 10f;
 
-    private int _roundNum = 0;
+    [Header("Score Values")]
+    [SerializeField] private int _perfectScoreValue = 10;
+    [SerializeField] private int _goodScoreValue = 8;
+    [SerializeField] private int _mediumScoreValue = 5;
+    [SerializeField] private int _badScoreValue = 2;
+
+    private int _roundNum;
+    private int _score;
 
     private readonly List<Quest> _questBuffer = new();
     private Quest _currentQuest;
-    
+
+    private Dictionary<Quest, int> _questHistory = new();
+
     private readonly List<Character> _characterBuffer = new();
     private Character _currentCharacter;
 
@@ -47,14 +59,14 @@ public class GameManager : MonoBehaviour, IDebug
     public void SubscribeToDebugConsole()
     {
         if (DebugConsole.Instance == null) return;
-            
+
         DebugConsole.Instance.AddToMethodDictionary(ChargeCrystalBall);
     }
 
     public void UnsubscribeFromDebugConsole()
     {
         if (DebugConsole.Instance == null) return;
-            
+
         DebugConsole.Instance.RemoveFromMethodDictionary(ChargeCrystalBall);
     }
 
@@ -68,18 +80,20 @@ public class GameManager : MonoBehaviour, IDebug
         {
             _questBuffer.Add(_quests[i]);
         }
-        
+
         for (int i = 0; i < _characters.Length; i++)
         {
             _characterBuffer.Add(_characters[i]);
         }
-        
-        SubscribeToDebugConsole();
     }
 
     private void Start()
     {
+        SubscribeToDebugConsole();
+
         InitializeRound();
+
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
@@ -88,9 +102,10 @@ public class GameManager : MonoBehaviour, IDebug
         {
             var speed = Mathf.Abs(Input.GetAxis("Mouse X")) + Mathf.Abs(Input.GetAxis("Mouse Y"));
 
-            if (speed > 15f)
+            if (speed > _sensiCrsytalBall)
             {
                 _crystalBallTimer += Time.deltaTime;
+                Debug.Log(_crystalBallTimer);
             }
         }
     }
@@ -101,7 +116,7 @@ public class GameManager : MonoBehaviour, IDebug
     }
 
     #endregion
-    
+
     #region Private Methods
 
     private void InitializeRound()
@@ -109,12 +124,13 @@ public class GameManager : MonoBehaviour, IDebug
         _roundNum++;
         _crystalBallTimer = 0f;
 
-        if (_roundNum >= _roundCount || _questBuffer.Count == 0 || _characterBuffer.Count == 0)
+        if (_roundNum >= _roundCount + 1 || _questBuffer.Count == 0 || _characterBuffer.Count == 0)
         {
-            Debug.Log("finish game");
+            _scorePanel.SetActive(true);
+            _scoreText.text += $"TOTAL : {_score} golds";
             return;
         }
-        
+
         _currentQuest = GenerateRequest();
         _currentCharacter = GenerateCharacter();
 
@@ -134,9 +150,16 @@ public class GameManager : MonoBehaviour, IDebug
 
         return quest;
     }
-    
+
     private Character GenerateCharacter()
     {
+        // if (_roundNum < 3)
+        // {
+        //     var surprise = _characterBuffer[0];
+        //     _characterBuffer.Remove(surprise);
+        //     return surprise;
+        // }
+
         var random = Random.Range(0, _characterBuffer.Count);
 
         var character = _characterBuffer[random];
@@ -154,58 +177,71 @@ public class GameManager : MonoBehaviour, IDebug
         {
             yield return new WaitForEndOfFrame();
         }
-        
+
         yield return new WaitForSeconds(_timeToTakePose);
-        
-        UpdateCharacter(poseId);
+
+        RoundEnd(poseId);
 
         yield return new WaitForSeconds(_timeBeforeNextRound);
-        
+
         InitializeRound();
     }
 
-    private void UpdateCharacter(int id)
+    private void RoundEnd(int id)
     {
         for (int i = 0; i < _currentQuest.MediumSpells.Length; i++)
         {
             if (id != _currentQuest.MediumSpells[i].Id) continue;
-            
-            _characterImage.sprite = _currentCharacter.NormalSprite;
-            _textZone.text = _currentQuest.MediumSentence;
+
+            UpdateUI(_currentCharacter.NormalSprite, _currentQuest.MediumSentence);
+            UpdateScore(_mediumScoreValue);;
             return;
         }
-        
+
         for (int i = 0; i < _currentQuest.GoodSpells.Length; i++)
         {
             if (id != _currentQuest.GoodSpells[i].Id) continue;
-            
-            _characterImage.sprite = _currentCharacter.GoodSprite;
-            _textZone.text = _currentQuest.GoodSentence;
+
+            UpdateUI(_currentCharacter.GoodSprite, _currentQuest.GoodSentence);
+            UpdateScore(_goodScoreValue);
             return;
         }
-        
+
         for (int i = 0; i < _currentQuest.PerfectSpells.Length; i++)
         {
             if (id != _currentQuest.PerfectSpells[i].Id) continue;
-            
-            _characterImage.sprite = _currentCharacter.PerfectSprite;
-            _textZone.text = _currentQuest.PerfectSentence;
+
+            UpdateUI(_currentCharacter.PerfectSprite, _currentQuest.PerfectSentence);
+            UpdateScore(_perfectScoreValue);
             return;
         }
-        
+
         for (int i = 0; i < _currentQuest.SpecialSpells.Length; i++)
         {
             if (id != _currentQuest.SpecialSpells[i].Id) continue;
-            
-            _characterImage.sprite = _currentCharacter.SpecialSprite;
-            _textZone.text = _currentQuest.SpecialSentence;
+
+            UpdateUI(_currentCharacter.SpecialSprite, _currentQuest.SpecialSentence);
+            UpdateScore(_currentQuest.SpecialScoreValue);
             return;
         }
-        
-        _characterImage.sprite = _currentCharacter.BadSprite;
-        _textZone.text = _currentQuest.BadSentence;
+
+        UpdateUI(_currentCharacter.BadSprite, _currentQuest.BadSentence);
+        UpdateScore(_badScoreValue);
     }
-    
+
+    private void UpdateUI(Sprite image, string characterSentence)
+    {
+        _characterImage.sprite = image;
+        _textZone.text = characterSentence;
+    }
+
+    private void UpdateScore(int score)
+    {
+        _scoreText.text += $"Quest n°{_questHistory.Count + 1} : {score} golds" + "\n";
+        _score += score;
+        _questHistory.Add(_currentQuest, score);
+    }
+
     private void ChargeCrystalBall(string s)
     {
         _crystalBallTimer += 100f;

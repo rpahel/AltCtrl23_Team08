@@ -59,6 +59,7 @@ MonoBehaviour:
   _textZone: {fileID: 0}
   _characterImage: {fileID: 0}
   _roundCount: 8
-  _timeToChargeEnergy: 5
+  _timeToChargeEnergy: 2
   _timeToTakePose: 7
   _timeBeforeNextRound: 10
+  _sensiCrsytalBall: 6

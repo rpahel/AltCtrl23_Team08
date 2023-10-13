@@ -32,6 +32,7 @@ public class Quest : ScriptableObject
     [Header("Special Outcomes")]
     [SerializeField] private Spell[] _specialSpells;
     [SerializeField] [TextArea] private string _specialSentence;
+    [SerializeField] private int _specialScoreValue;
 
     #endregion
 
@@ -48,6 +49,7 @@ public class Quest : ScriptableObject
     public string PerfectSentence => _perfectSentence;
     public Spell[] SpecialSpells => _specialSpells;
     public string SpecialSentence => _specialSentence;
+    public int SpecialScoreValue => _specialScoreValue;
 
     #endregion
 }
