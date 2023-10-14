@@ -35,3 +35,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dbb604da507cb924db9a3a76aed9b1ed, type: 2}
   _specialSentence: It won't let me wear the armor, but at least I could get back
     at the salesman. And get my money back.
+  _specialScoreValue: 60

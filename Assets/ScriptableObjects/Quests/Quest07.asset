@@ -35,3 +35,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ef2e1ccad2243ff41812504579971aa9, type: 2}
   _specialSentence: Good idea, I'll move the stage to the village square so no one
     can pass by without seeing it!
+  _specialScoreValue: 90

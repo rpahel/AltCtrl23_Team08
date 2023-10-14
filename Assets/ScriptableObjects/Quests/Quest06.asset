@@ -36,3 +36,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a0a271c6d31c42a48af33de660f68a69, type: 2}
   _specialSentence: Clever! I'll start a fire to hide this mistake! My reputation
     as a gardener will be saved!
+  _specialScoreValue: 80

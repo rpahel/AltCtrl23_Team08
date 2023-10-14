@@ -34,3 +34,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3052db1212aa1f440a10ad30fd359cea, type: 2}
   _specialSentence: Eventually if he doesn't have a head, he can't wedge his head
     in.
+  _specialScoreValue: 30

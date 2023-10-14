@@ -36,3 +36,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f110eee541b7218429a1ee0db7ccc8db, type: 2}
   _specialSentence: You're right, I'll start by cleaning my dishes, I hope it'll
     work.
+  _specialScoreValue: 70

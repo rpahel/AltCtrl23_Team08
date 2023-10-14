@@ -34,3 +34,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dbb604da507cb924db9a3a76aed9b1ed, type: 2}
   _specialSentence: I find it a bit excessive, but at least it will allow me to find
     peace.
+  _specialScoreValue: 30

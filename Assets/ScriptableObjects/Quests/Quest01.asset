@@ -34,3 +34,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dbb604da507cb924db9a3a76aed9b1ed, type: 2}
   _specialSentence: I'll probably lose my house in the process, but it'll be worth
     it.
+  _specialScoreValue: 80

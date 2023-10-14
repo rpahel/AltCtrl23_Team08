@@ -58,8 +58,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2b03a161005d2ee4ba1258928cba4c0b, type: 2}
   _textZone: {fileID: 0}
   _characterImage: {fileID: 0}
+  _scorePanel: {fileID: 0}
+  _scoreText: {fileID: 0}
   _roundCount: 8
   _timeToChargeEnergy: 2
   _timeToTakePose: 7
   _timeBeforeNextRound: 10
   _sensiCrsytalBall: 6
+  _perfectScoreValue: 100
+  _goodScoreValue: 75
+  _mediumScoreValue: 50
+  _badScoreValue: 20
