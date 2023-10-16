@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5331489015062617046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7200880264953575646}
+  - component: {fileID: 7607571666723518879}
+  - component: {fileID: 8960511482343133076}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7200880264953575646
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5331489015062617046}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7607571666723518879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5331489015062617046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eca9ab0a984f3c4daf8eb1154e38812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _quests:
+  - {fileID: 11400000, guid: a87268fa9ba620d4dacbaae8fb26ea77, type: 2}
+  - {fileID: 11400000, guid: 25664cf7ffc913d4ab2f7572c49da07f, type: 2}
+  - {fileID: 11400000, guid: 7a4fbdd807e12d94f9df786ea85db3c9, type: 2}
+  - {fileID: 11400000, guid: f31a8cd76ec4ba647b0db69e2e38428a, type: 2}
+  - {fileID: 11400000, guid: 182458268d479684f9ddf64b8e4108ff, type: 2}
+  - {fileID: 11400000, guid: dcc00cc2d426148488ce11e876229e72, type: 2}
+  - {fileID: 11400000, guid: 01615607826fe94428ccd47ca931b9a8, type: 2}
+  - {fileID: 11400000, guid: 4c536268850d5e94da9c8eec1bf087e3, type: 2}
+  _characters:
+  - {fileID: 11400000, guid: 9c21d01ffa693f84cbbc77808ca666b6, type: 2}
+  - {fileID: 11400000, guid: 2b03a161005d2ee4ba1258928cba4c0b, type: 2}
+  _textZone: {fileID: 0}
+  _characterImage: {fileID: 0}
+  _scorePanel: {fileID: 0}
+  _scoreText: {fileID: 0}
+  _roundCount: 8
+  _timeToChargeEnergy: 3
+  _timeToTakePose: 7
+  _timeBeforeNextRound: 10
+  _sensiCrsytalBall: 10
+  _perfectScoreValue: 10
+  _goodScoreValue: 8
+  _mediumScoreValue: 5
+  _badScoreValue: 2
+--- !u!114 &8960511482343133076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5331489015062617046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7abb299a94213c1449aeaaf792407522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

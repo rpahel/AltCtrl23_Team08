@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: PosesSO
   m_EditorClassIdentifier: 
   _poses:
+  - _name: Vide
+    _id: 0
+    _attribute: 0
   - _name: Feu
     _id: 1
     _attribute: 1
@@ -51,7 +54,10 @@ MonoBehaviour:
     _attribute: 12
   - _name: Stopper
     _id: 13
-    _attribute: 12
+    _attribute: 13
   - _name: Reparer
     _id: 14
-    _attribute: 12
+    _attribute: 14
+  - _name: Neutre
+    _id: 15
+    _attribute: 0

@@ -6,13 +6,13 @@ namespace ScrollShop.Enums
         WARNING,
         ERROR
     }
-    
+
     public enum ATTRIBUTE
     {
         NONE,
         FIRE,
         WATER,
-        LIGHTNING,
+        IRON,
         FURNITURE,
         PLANTS,
         LIVINGBEINGS,
@@ -21,6 +21,8 @@ namespace ScrollShop.Enums
         RAIN,
         CLEANING,
         GROWTH,
-        THROW,
+        MOVE,
+        STOP,
+        REPAIR,
     }
 }
