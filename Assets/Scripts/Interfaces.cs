@@ -16,6 +16,11 @@ namespace ScrollShop.Interfaces
     
     public interface ISoundManager
     {
+        public AudioSource MusicAudioSource { get; set; }
+        public AudioSource SfxAudioSource { get; set; }
+        public AudioClip Music { get; set; }
+        
+        void ChangeMusic(AudioClip audioClip);
         void PlaySound(AudioClip audioClip);
     }
 }

@@ -5753,6 +5753,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7607571666723518879, guid: e97176a17985eb64db8351087d2c8980, type: 3}
+      propertyPath: _test1
+      value: 
+      objectReference: {fileID: 8300000, guid: 090e099acab0fc24c941adeb7f5ffb50, type: 3}
+    - target: {fileID: 7607571666723518879, guid: e97176a17985eb64db8351087d2c8980, type: 3}
+      propertyPath: _test2
+      value: 
+      objectReference: {fileID: 8300000, guid: 8f8b54457208e6d4cbd41795a5f76a37, type: 3}
+    - target: {fileID: 7607571666723518879, guid: e97176a17985eb64db8351087d2c8980, type: 3}
       propertyPath: _textZone
       value: 
       objectReference: {fileID: 230249222}
