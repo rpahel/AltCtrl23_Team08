@@ -11,11 +11,13 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abd47cdca8f3d42499b2b3267cdb42c4, type: 3}
   m_Name: Quest05
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   _isRandomNPC: 0
   _character: {fileID: 0}
   _requestSentence: I don't like the big tree in the temple, it stands in front of
     my window and obstructs my view in the morning.
+  _maleQuestSound: {fileID: 8300000, guid: e028bd0fcb500664eb267745a30d1dbb, type: 3}
+  _femaleQuestSound: {fileID: 8300000, guid: 259a9b95f47cdd549a51fdf3e899f043, type: 3}
   _badSentence: Meh... I don't see how that would solve my tree problem.
   _mediumSpells:
   - {fileID: 11400000, guid: 0c37f9d8aa834b641acf1b3b8a39adf9, type: 2}

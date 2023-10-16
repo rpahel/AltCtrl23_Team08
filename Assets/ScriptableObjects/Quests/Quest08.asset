@@ -11,11 +11,13 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abd47cdca8f3d42499b2b3267cdb42c4, type: 3}
   m_Name: Quest08
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   _isRandomNPC: 0
   _character: {fileID: 0}
   _requestSentence: The neighbor's dog is driving me crazy! He barks constantly and
     runs around! Please help me "fix" the problem.
+  _maleQuestSound: {fileID: 8300000, guid: 9c821eea768500b488c35d0d625d9777, type: 3}
+  _femaleQuestSound: {fileID: 8300000, guid: afc8935562b246048a81ad581b0894fc, type: 3}
   _badSentence: I imagine you have a good reason for giving me this spell. Right?
   _mediumSpells:
   - {fileID: 11400000, guid: 946ff9d27a94f2f429cdeb35edb05e50, type: 2}

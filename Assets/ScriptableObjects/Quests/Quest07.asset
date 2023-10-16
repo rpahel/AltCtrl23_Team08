@@ -11,11 +11,13 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abd47cdca8f3d42499b2b3267cdb42c4, type: 3}
   m_Name: Quest07
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   _isRandomNPC: 0
   _character: {fileID: 0}
   _requestSentence: I've got actors, a covered stage and a curtain. All I need is
     an audience to make my show perfect. Can you bring me one?
+  _maleQuestSound: {fileID: 8300000, guid: 5642461f98c22a0419f337e7ad277f1a, type: 3}
+  _femaleQuestSound: {fileID: 8300000, guid: 1d11a615cccf0274581e23895faef907, type: 3}
   _badSentence: You really don't understand anything about art...
   _mediumSpells:
   - {fileID: 11400000, guid: 54267619ff259804893ec4d7122a506d, type: 2}

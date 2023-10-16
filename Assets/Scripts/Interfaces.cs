@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace ScrollShop.Interfaces
 {
     interface IDebug
@@ -10,5 +12,10 @@ namespace ScrollShop.Interfaces
     {
         void SubscribeToPoseChangedEvent();
         void UnsubscribeFromPoseChangedEvent();
+    }
+    
+    public interface ISoundManager
+    {
+        void PlaySound(AudioClip audioClip);
     }
 }

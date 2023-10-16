@@ -11,10 +11,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abd47cdca8f3d42499b2b3267cdb42c4, type: 3}
   m_Name: Quest01
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   _isRandomNPC: 0
   _character: {fileID: 0}
   _requestSentence: I want a spell for my F-E-E-T to stay warm during winter nights.
+  _maleQuestSound: {fileID: 8300000, guid: 31b3f24b0cbd61d44a7ff414eb10bc33, type: 3}
+  _femaleQuestSound: {fileID: 8300000, guid: 16b1717e6aab0d74e8a8fc527c404afc, type: 3}
   _badSentence: I'll take your parchment, but I doubt it'll help me.
   _mediumSpells:
   - {fileID: 11400000, guid: a0a271c6d31c42a48af33de660f68a69, type: 2}

@@ -136,6 +136,7 @@ public class GameManager : MonoBehaviour, IDebug
 
         _textZone.text = _currentQuest.RequestSentence;
         _characterImage.sprite = _currentCharacter.NormalSprite;
+        ServiceLocator.Get().PlaySound(_currentCharacter.IsMale ? _currentQuest.MaleQuestSound : _currentQuest.FemaleQuestSound);
 
         StartCoroutine(PlayRound());
     }

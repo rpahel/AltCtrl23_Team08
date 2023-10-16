@@ -17,3 +17,4 @@ MonoBehaviour:
   _goodSprite: {fileID: 21300000, guid: 81f3604480254ca498e98a1c687db8c3, type: 3}
   _perfectSprite: {fileID: 21300000, guid: 81f3604480254ca498e98a1c687db8c3, type: 3}
   _specialSprite: {fileID: 21300000, guid: 81f3604480254ca498e98a1c687db8c3, type: 3}
+  _isMale: 1

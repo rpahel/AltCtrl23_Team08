@@ -13,6 +13,8 @@ public class Quest : ScriptableObject
 
     [SerializeField] [DisableIf("_isRandomNPC")] private Character _character;
     [SerializeField] [TextArea] private string _requestSentence;
+    [SerializeField] private AudioClip _maleQuestSound;
+    [SerializeField] private AudioClip _femaleQuestSound;
     
     [Header("Wrong Outcomes")]
     [SerializeField] [TextArea] private string _badSentence;
@@ -50,6 +52,8 @@ public class Quest : ScriptableObject
     public Spell[] SpecialSpells => _specialSpells;
     public string SpecialSentence => _specialSentence;
     public int SpecialScoreValue => _specialScoreValue;
+    public AudioClip MaleQuestSound => _maleQuestSound;
+    public AudioClip FemaleQuestSound => _femaleQuestSound;
 
     #endregion
 }

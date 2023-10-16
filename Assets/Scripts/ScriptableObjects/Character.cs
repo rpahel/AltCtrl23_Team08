@@ -11,6 +11,9 @@ public class Character : ScriptableObject
     [SerializeField] private Sprite _goodSprite;
     [SerializeField] private Sprite _perfectSprite;
     [SerializeField] private Sprite _specialSprite;
+    
+    [Header("Characteristics")] 
+    [SerializeField] private bool _isMale;
 
     #endregion
 
@@ -21,6 +24,7 @@ public class Character : ScriptableObject
     public Sprite GoodSprite => _goodSprite;
     public Sprite PerfectSprite => _perfectSprite;
     public Sprite SpecialSprite => _specialSprite;
+    public bool IsMale => _isMale;
 
     #endregion
 }

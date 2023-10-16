@@ -11,11 +11,13 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abd47cdca8f3d42499b2b3267cdb42c4, type: 3}
   m_Name: Quest06
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   _isRandomNPC: 0
   _character: {fileID: 0}
   _requestSentence: A murder has been committed! Someone has decapitated the king's
     hedge statue.
+  _maleQuestSound: {fileID: 8300000, guid: 136201ef78aede44b93440a871b5c44a, type: 3}
+  _femaleQuestSound: {fileID: 8300000, guid: 9c6977e8e9a8f0b478e382febcb7aeb9, type: 3}
   _badSentence: I don't trust this spell, but maybe you're right.
   _mediumSpells:
   - {fileID: 11400000, guid: f0c3f0f5381d4aa40ac000912358fbc3, type: 2}

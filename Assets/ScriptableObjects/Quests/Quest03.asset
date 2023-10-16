@@ -11,10 +11,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abd47cdca8f3d42499b2b3267cdb42c4, type: 3}
   m_Name: Quest03
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   _isRandomNPC: 0
   _character: {fileID: 0}
   _requestSentence: I bought some armor at auction but I didn't notice it was dwarf-sized.
+  _maleQuestSound: {fileID: 8300000, guid: cef039d17543dd64ba04490148e838e5, type: 3}
+  _femaleQuestSound: {fileID: 8300000, guid: 3ec27fb3049a58243813ea875049a690, type: 3}
   _badSentence: It's hard for me to imagine how you see it. But I trust you.
   _mediumSpells:
   - {fileID: 11400000, guid: f5c2cb065f8345844a90d49e9157031c, type: 2}

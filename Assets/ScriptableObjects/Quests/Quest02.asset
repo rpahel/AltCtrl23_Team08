@@ -11,11 +11,13 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abd47cdca8f3d42499b2b3267cdb42c4, type: 3}
   m_Name: Quest02
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   _isRandomNPC: 0
   _character: {fileID: 0}
   _requestSentence: It's terrible! My employee made the mistake of mixing my wine
     with water! It tastes terrible, what am I going to do?
+  _maleQuestSound: {fileID: 8300000, guid: 549dcc88fcfc0f04eaac8f44d285cf25, type: 3}
+  _femaleQuestSound: {fileID: 8300000, guid: 078f292938ab0034ca93cb0be5bce654, type: 3}
   _badSentence: Um... Okay, I'm going to believe that this will work, but I doubt
     it.
   _mediumSpells:
