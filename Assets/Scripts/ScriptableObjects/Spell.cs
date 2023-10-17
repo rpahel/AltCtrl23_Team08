@@ -13,6 +13,8 @@ public class Spell : ScriptableObject
     [SerializeField] private ATTRIBUTE _firstAttribute;
     [SerializeField] private ATTRIBUTE _secondAttribute;
 
+    [SerializeField] private AudioClip _audioClip;
+
     #endregion
 
     #region Properties
@@ -20,6 +22,7 @@ public class Spell : ScriptableObject
     public uint Id => _id;
     public ATTRIBUTE FirstAttribute => _firstAttribute;
     public ATTRIBUTE SecondAttribute => _secondAttribute;
+    public AudioClip AudioClip => _audioClip;
 
     #endregion
 }
