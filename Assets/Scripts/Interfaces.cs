@@ -20,7 +20,7 @@ namespace ScrollShop.Interfaces
         public AudioSource SfxAudioSource { get; set; }
         public AudioClip Music { get; set; }
         
-        void ChangeMusic(AudioClip audioClip);
+        void ChangeMusic(AudioClip audioClip, bool mainMusic = false);
         void PlaySound(AudioClip audioClip);
     }
 }

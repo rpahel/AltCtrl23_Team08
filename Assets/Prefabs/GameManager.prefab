@@ -70,6 +70,8 @@ MonoBehaviour:
   _goodScoreValue: 8
   _mediumScoreValue: 5
   _badScoreValue: 2
+  _musicInGame: {fileID: 8300000, guid: c0d7cf26a7a78454da07ab4be339c8fa, type: 3}
+  _musicPose: {fileID: 8300000, guid: 158a7020784b3654fb9ce1408c0779c0, type: 3}
 --- !u!114 &8960511482343133076
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -22,7 +22,7 @@ namespace ScrollShop.Interfaces
             set => throw new System.NotImplementedException();
         }
 
-        public void ChangeMusic(AudioClip audioClip){}
+        public void ChangeMusic(AudioClip audioClip, bool mainMusic = false){}
 
         public void PlaySound(AudioClip audioClip){}
     }

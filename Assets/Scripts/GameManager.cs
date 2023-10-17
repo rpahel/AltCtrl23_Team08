@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using ScrollShop.CustomDebug;
@@ -52,6 +51,12 @@ public class GameManager : MonoBehaviour, IDebug
     [SerializeField] private int _goodScoreValue = 8;
     [SerializeField] private int _mediumScoreValue = 5;
     [SerializeField] private int _badScoreValue = 2;
+    
+    [Header("Audio")]
+    [SerializeField] private AudioClip _musicInGame;
+    [SerializeField] private AudioClip _musicPose;
+    
+    
 
     private int _roundNum;
     private int _score;
@@ -106,6 +111,8 @@ public class GameManager : MonoBehaviour, IDebug
         SubscribeToDebugConsole();
 
         InitializeRound();
+        
+        ServiceLocator.Get().ChangeMusic(_musicInGame, true);
 
         //Cursor.lockState = CursorLockMode.Locked;
     }
@@ -220,10 +227,13 @@ public class GameManager : MonoBehaviour, IDebug
         {
             yield return new WaitForEndOfFrame();
         }
+        
+        ServiceLocator.Get().ChangeMusic(_musicPose);
 
         yield return new WaitForSeconds(_timeToTakePose);
 
         RoundEnd(poseId);
+        ServiceLocator.Get().ChangeMusic(_musicInGame, true);
 
         yield return new WaitForSeconds(_timeBeforeNextRound);
 

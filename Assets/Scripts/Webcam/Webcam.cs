@@ -2,6 +2,7 @@ using System.Collections;
 using DG.Tweening;
 using NaughtyAttributes;
 using ScrollShop.CustomDebug;
+using ScrollShop.Enums;
 using ScrollShop.Structs;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +11,7 @@ public class Webcam : MonoBehaviour
 {
     //== Fields =============================================
     [SerializeField, BoxGroup("Dependencies")]
-    private string _webcamName = "Full HD webcam";
+    private string _webcamNameOverride = "";
     
     [SerializeField, BoxGroup("Dependencies")]
     private Vector2Int _webcamResolution = new Vector2Int(1280, 720);
@@ -21,18 +22,25 @@ public class Webcam : MonoBehaviour
     [SerializeField, BoxGroup("Dependencies")]
     private Image _image;
 
+#if UNITY_EDITOR
     [SerializeField, BoxGroup("Animations")]
-    private bool _debugPlayAnimations = false;
-    
+    private bool _debugPlayBeginAnimationOnStart = false;
+#endif
+
     [SerializeField, BoxGroup("Animations")]
     private WebcamAnimationTransform _beginTransform;
+    
+#if UNITY_EDITOR
+    [SerializeField, BoxGroup("Animations")]
+    private bool _debugPlayEndAnimationOnStart = false;
+#endif
     
     [SerializeField, BoxGroup("Animations")]
     private WebcamAnimationTransform _endTransform; 
     
     private WebCamTexture _wTexture;
-
-
+    
+    //== Public methods =====================================
     public void DoBeginAnimation()
     {
         // Setup
@@ -62,14 +70,30 @@ public class Webcam : MonoBehaviour
         _image.transform.DOLocalRotate(targetRot, _endTransform.rotation.duration, RotateMode.FastBeyond360).SetEase(_endTransform.rotation.ease);
         _image.transform.DOScale(targetScale, _endTransform.scale.duration).SetEase(_endTransform.scale.ease);
     }
+
+    public void PauseWebcam()
+    {
+        _wTexture.Pause();
+    }
+
+    public void StopWebcam()
+    {
+        _wTexture.Stop();
+    }
     
     //== Private methods ====================================
     private void Awake()
     {
-        _wTexture = new(_webcamName, _webcamResolution.x, _webcamResolution.y, _webcamFps);
+        string webcamName;
         
         if (DebugConsole.Instance)
         {
+            if (WebCamTexture.devices.Length <= 0)
+            {
+                DebugConsole.Instance.Print("Webcam : No Webcam devices detected !", LOGTYPE.ERROR);
+                return;
+            }
+            
             DebugConsole.Instance.Print("Webcam : Detected webcams (" + WebCamTexture.devices.Length + ")");
         
             foreach (var device in WebCamTexture.devices)
@@ -77,11 +101,20 @@ public class Webcam : MonoBehaviour
         }
         else
         {
+            if (WebCamTexture.devices.Length <= 0)
+            {
+                Debug.LogError("Webcam : No Webcam devices detected !");
+                return;
+            }
+            
             Debug.Log("Webcam : Detected webcams (" + WebCamTexture.devices.Length + ")");
         
             foreach (var device in WebCamTexture.devices)
                 Debug.Log("Webcam : " + device.name + " (" + device.kind + ").");
         }
+
+        webcamName = _webcamNameOverride == "" ? WebCamTexture.devices[0].name : _webcamNameOverride;
+        _wTexture = new(webcamName, _webcamResolution.x, _webcamResolution.y, _webcamFps);
     }
 
     private IEnumerator Start()
@@ -91,13 +124,22 @@ public class Webcam : MonoBehaviour
         _wTexture.Play();
         _image.sprite = null;
 
-        if (_debugPlayAnimations)
+        #if UNITY_EDITOR
+        if (_debugPlayBeginAnimationOnStart)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
             DoBeginAnimation();
             yield return new WaitForSeconds(_beginTransform.GetMaxDuration());
-            DoEndAnimation();
         }
+
+        if (_debugPlayEndAnimationOnStart)
+        {
+            yield return new WaitForSeconds(1f);
+            _wTexture.Pause();
+            DoEndAnimation();
+            yield return new WaitForSeconds(_endTransform.GetMaxDuration());
+        }
+        #endif
     }
 
     private void OnDisable()
