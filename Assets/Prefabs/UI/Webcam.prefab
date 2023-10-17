@@ -190,34 +190,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4383c7a2cda22d244a83b9b0224ec7ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _webcamName: Full HD webcam
+  _webcamNameOverride: 
   _webcamResolution: {x: 1280, y: 720}
   _webcamFps: 30
   _image: {fileID: 8478985155951521895}
-  _debugPlayAnimations: 1
+  _debugPlayBeginAnimationOnStart: 1
   _beginTransform:
     position:
-      ease: 30
+      ease: 0
       duration: 1
-      vector: {x: 0, y: 708, z: 0}
+      vector: {x: 0, y: 0, z: 0}
     rotation:
       ease: 0
       duration: 1
       vector: {x: -0, y: 0, z: 0}
     scale:
-      ease: 6
+      ease: 0
       duration: 1
-      vector: {x: -0.0751, y: 0.0751, z: 0.0751}
+      vector: {x: -1, y: 1, z: 1}
+  _debugPlayEndAnimationOnStart: 1
   _endTransform:
     position:
       ease: 0
       duration: 1
-      vector: {x: 0, y: -337, z: 0}
+      vector: {x: 0, y: 0, z: 0}
     rotation:
       ease: 0
       duration: 1
-      vector: {x: 61.81, y: 0, z: 0}
+      vector: {x: 0, y: 0, z: 0}
     scale:
       ease: 0
       duration: 1
-      vector: {x: -0.24995, y: 0.24995, z: 0.24995}
+      vector: {x: -1, y: 1, z: 1}
