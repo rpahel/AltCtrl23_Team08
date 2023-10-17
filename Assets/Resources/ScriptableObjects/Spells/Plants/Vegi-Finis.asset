@@ -15,3 +15,4 @@ MonoBehaviour:
   _id: 38
   _firstAttribute: 5
   _secondAttribute: 13
+  _audioClip: {fileID: 8300000, guid: b0bf452773504864aabca43b877a12f2, type: 3}
