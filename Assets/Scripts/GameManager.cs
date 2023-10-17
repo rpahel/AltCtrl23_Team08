@@ -191,10 +191,9 @@ public class GameManager : MonoBehaviour, IDebug
         yield return new WaitForSeconds(_timeToTakePose);
 
         RoundEnd(poseId);
+        ServiceLocator.Get().ChangeMusic(_musicInGame, true);
 
         yield return new WaitForSeconds(_timeBeforeNextRound);
-        
-        ServiceLocator.Get().ChangeMusic(_musicInGame, true);
 
         InitializeRound();
     }
