@@ -12,9 +12,21 @@ public class GameManager : MonoBehaviour, IDebug
 {
     #region Fields
 
-    // [Header("NPC Assets")]
-    // [SerializeField] private Sprite[] _headAssets;
-    // [SerializeField] private Sprite[] _bodyAssets;
+    [Header("NPC Assets")]
+    [SerializeField] private Sprite[] _maleHeadAssets;
+    [SerializeField] private Sprite[] _maleBodyAssets;
+    [SerializeField] private Sprite[] _maleNeutralEyesAssets;
+    [SerializeField] private Sprite[] _maleGoodEyesAssets;
+    [SerializeField] private Sprite[] _malePerfectEyesAssets;
+    [SerializeField] private Sprite[] _maleBadEyesAssets;
+    
+    [SerializeField] private Sprite[] _femaleHeadAssets;
+    [SerializeField] private Sprite[] _femaleBodyAssets;
+    [SerializeField] private Sprite[] _femaleNeutralEyesAssets;
+    [SerializeField] private Sprite[] _femaleGoodEyesAssets;
+    [SerializeField] private Sprite[] _femalePerfectEyesAssets;
+    [SerializeField] private Sprite[] _femaleBadEyesAssets;
+    
 
     [Header("Scriptable Objects")]
     [SerializeField] private Quest[] _quests;
@@ -22,7 +34,9 @@ public class GameManager : MonoBehaviour, IDebug
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI _textZone;
-    [SerializeField] private Image _characterImage;
+    [SerializeField] private Image _characterBodyImage;
+    [SerializeField] private Image _characterHeadImage;
+    [SerializeField] private Image _characterEyesImage;
     [SerializeField] private GameObject _scorePanel;
     [SerializeField] private TextMeshProUGUI _scoreText;
 
@@ -135,7 +149,10 @@ public class GameManager : MonoBehaviour, IDebug
         _currentCharacter = GenerateCharacter();
 
         _textZone.text = _currentQuest.RequestSentence;
-        _characterImage.sprite = _currentCharacter.NormalSprite;
+        _characterBodyImage.sprite = _currentCharacter.BodySprite;
+        _characterHeadImage.sprite = _currentCharacter.HeadSprite;
+        _characterEyesImage.sprite = _currentCharacter.NeutralSprite;
+        
         ServiceLocator.Get().PlaySound(_currentCharacter.IsMale ? _currentQuest.MaleQuestSound : _currentQuest.FemaleQuestSound);
 
         StartCoroutine(PlayRound());
@@ -154,19 +171,44 @@ public class GameManager : MonoBehaviour, IDebug
 
     private Character GenerateCharacter()
     {
-        // if (_roundNum < 3)
-        // {
-        //     var surprise = _characterBuffer[0];
-        //     _characterBuffer.Remove(surprise);
-        //     return surprise;
-        // }
-
         var random = Random.Range(0, _characterBuffer.Count);
 
         var character = _characterBuffer[random];
 
         //_characterBuffer.Remove(character);
 
+        return character;
+    }
+
+    private Character CreateRandomCharacter()
+    {
+        var character = ScriptableObject.CreateInstance<Character>();
+
+        if (Random.Range(0, 100) < 50)
+        {
+            var index = Random.Range(0, _maleHeadAssets.Length);
+            
+            character.BodySprite = _maleBodyAssets[index];
+            character.HeadSprite = _maleHeadAssets[index];
+
+            character.BadSprite = _maleBadEyesAssets[index];
+            character.NeutralSprite = _maleNeutralEyesAssets[index];
+            character.GoodSprite = _maleGoodEyesAssets[index];
+            character.PerfectSprite = _malePerfectEyesAssets[index];
+        }
+        else
+        {
+            var index = Random.Range(0, _femaleHeadAssets.Length);
+            
+            character.BodySprite = _femaleBodyAssets[index];
+            character.HeadSprite = _femaleHeadAssets[index];
+            
+            character.BadSprite = _femaleBadEyesAssets[index];
+            character.NeutralSprite = _femaleNeutralEyesAssets[index];
+            character.GoodSprite = _femaleGoodEyesAssets[index];
+            character.PerfectSprite = _femalePerfectEyesAssets[index];
+        }
+        
         return character;
     }
 
@@ -194,7 +236,7 @@ public class GameManager : MonoBehaviour, IDebug
         {
             if (id != _currentQuest.MediumSpells[i].Id) continue;
 
-            UpdateUI(_currentCharacter.NormalSprite, _currentQuest.MediumSentence);
+            UpdateUI(_currentCharacter.NeutralSprite, _currentQuest.MediumSentence);
             UpdateScore(_mediumScoreValue);;
             return;
         }
@@ -221,7 +263,7 @@ public class GameManager : MonoBehaviour, IDebug
         {
             if (id != _currentQuest.SpecialSpells[i].Id) continue;
 
-            UpdateUI(_currentCharacter.SpecialSprite, _currentQuest.SpecialSentence);
+            UpdateUI(_currentCharacter.NeutralSprite, _currentQuest.SpecialSentence);
             UpdateScore(_currentQuest.SpecialScoreValue);
             return;
         }
@@ -232,7 +274,7 @@ public class GameManager : MonoBehaviour, IDebug
 
     private void UpdateUI(Sprite image, string characterSentence)
     {
-        _characterImage.sprite = image;
+        _characterEyesImage.sprite = image;
         _textZone.text = characterSentence;
     }
 
