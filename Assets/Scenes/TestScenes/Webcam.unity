@@ -311,6 +311,18 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7763856064175651036, guid: 1444be9addb396649827e2afa4e8fd83, type: 3}
+      propertyPath: _webcamName
+      value: c922 Pro Stream Webcam
+      objectReference: {fileID: 0}
+    - target: {fileID: 7763856064175651036, guid: 1444be9addb396649827e2afa4e8fd83, type: 3}
+      propertyPath: _debugPlayEndAnimationOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7763856064175651036, guid: 1444be9addb396649827e2afa4e8fd83, type: 3}
+      propertyPath: _debugPlayBeginAnimationOnStart
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
