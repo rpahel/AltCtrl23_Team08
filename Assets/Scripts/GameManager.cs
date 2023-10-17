@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour, IDebug
         }
 
         _currentQuest = GenerateRequest();
-        _currentCharacter = GenerateCharacter();
+        _currentCharacter = CreateRandomCharacter();
 
         _textZone.text = _currentQuest.RequestSentence;
         _characterBodyImage.sprite = _currentCharacter.BodySprite;
@@ -193,27 +193,29 @@ public class GameManager : MonoBehaviour, IDebug
 
         if (Random.Range(0, 100) < 50)
         {
-            var index = Random.Range(0, _maleHeadAssets.Length);
+            var headIndex = Random.Range(0, _maleHeadAssets.Length);
+            var bodyIndex = Random.Range(0, _maleBodyAssets.Length);
             
-            character.BodySprite = _maleBodyAssets[index];
-            character.HeadSprite = _maleHeadAssets[index];
+            character.BodySprite = _maleBodyAssets[headIndex];
+            character.HeadSprite = _maleHeadAssets[bodyIndex];
 
-            character.BadSprite = _maleBadEyesAssets[index];
-            character.NeutralSprite = _maleNeutralEyesAssets[index];
-            character.GoodSprite = _maleGoodEyesAssets[index];
-            character.PerfectSprite = _malePerfectEyesAssets[index];
+            character.BadSprite = _maleBadEyesAssets[0];
+            character.NeutralSprite = _maleNeutralEyesAssets[0];
+            character.GoodSprite = _maleGoodEyesAssets[0];
+            character.PerfectSprite = _malePerfectEyesAssets[0];
         }
         else
         {
-            var index = Random.Range(0, _femaleHeadAssets.Length);
+            var headIndex = Random.Range(0, _femaleHeadAssets.Length);
+            var bodyIndex = Random.Range(0, _femaleBodyAssets.Length);
             
-            character.BodySprite = _femaleBodyAssets[index];
-            character.HeadSprite = _femaleHeadAssets[index];
+            character.BodySprite = _femaleBodyAssets[headIndex];
+            character.HeadSprite = _femaleHeadAssets[bodyIndex];
             
-            character.BadSprite = _femaleBadEyesAssets[index];
-            character.NeutralSprite = _femaleNeutralEyesAssets[index];
-            character.GoodSprite = _femaleGoodEyesAssets[index];
-            character.PerfectSprite = _femalePerfectEyesAssets[index];
+            character.BadSprite = _femaleBadEyesAssets[0];
+            character.NeutralSprite = _femaleNeutralEyesAssets[0];
+            character.GoodSprite = _femaleGoodEyesAssets[0];
+            character.PerfectSprite = _femalePerfectEyesAssets[0];
         }
         
         return character;

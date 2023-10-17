@@ -5290,10 +5290,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 108887258}
     - target: {fileID: 7607571666723518879, guid: e97176a17985eb64db8351087d2c8980, type: 3}
-      propertyPath: _characterImage
-      value: 
-      objectReference: {fileID: 1325569764}
-    - target: {fileID: 7607571666723518879, guid: e97176a17985eb64db8351087d2c8980, type: 3}
       propertyPath: _characterBodyImage
       value: 
       objectReference: {fileID: 1325569764}
