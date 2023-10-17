@@ -11,7 +11,6 @@ namespace ScrollShop.Interfaces
             ServiceLocator.Initialize();
 
             ISoundManager soundManager = gameObject.AddComponent<SoundManager>();
-            gameObject.AddComponent<AudioSource>();
             ServiceLocator.Provide(soundManager);
         }
 
