@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07114c2bc0b128a48b9a10c60b8af3e2, type: 3}
-  m_Name: Metalli-Figo
+  m_Name: Metalli-Purgo
   m_EditorClassIdentifier: 
-  _id: 23
+  _id: 19
   _firstAttribute: 3
-  _secondAttribute: 14
-  _audioClip: {fileID: 8300000, guid: 37fd256e9b92b694788afabce52aeeea, type: 3}
+  _secondAttribute: 10
+  _audioClip: {fileID: 8300000, guid: 8f9b44cbc5175a54c9cc61b96fed7e22, type: 3}
+  _sfxType: {fileID: 8300000, guid: a7be2540b2a8fdb46ad7cac18d881fbe, type: 3}
+  _sfxEffect: {fileID: 8300000, guid: b82a8bfadaf2bf84b82a10fbca53d87f, type: 3}

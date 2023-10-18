@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using DG.Tweening;
 
@@ -60,6 +61,11 @@ namespace ScrollShop.Interfaces
             }
             
             SfxAudioSource.PlayOneShot(audioClip);
+        }
+
+        public void Reset()
+        {
+            _time = 0f;
         }
 
         #endregion

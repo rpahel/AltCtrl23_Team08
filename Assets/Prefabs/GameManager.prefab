@@ -82,10 +82,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dcc00cc2d426148488ce11e876229e72, type: 2}
   - {fileID: 11400000, guid: 01615607826fe94428ccd47ca931b9a8, type: 2}
   - {fileID: 11400000, guid: 4c536268850d5e94da9c8eec1bf087e3, type: 2}
-  _characters:
-  - {fileID: 11400000, guid: 9c21d01ffa693f84cbbc77808ca666b6, type: 2}
-  - {fileID: 11400000, guid: 2b03a161005d2ee4ba1258928cba4c0b, type: 2}
   _textZone: {fileID: 0}
+  _npc: {fileID: 0}
+  _dialogueZone: {fileID: 0}
   _characterBodyImage: {fileID: 0}
   _characterHeadImage: {fileID: 0}
   _characterEyesImage: {fileID: 0}
@@ -96,12 +95,13 @@ MonoBehaviour:
   _timeToTakePose: 7
   _timeBeforeNextRound: 10
   _sensiCrsytalBall: 10
-  _perfectScoreValue: 10
-  _goodScoreValue: 8
-  _mediumScoreValue: 5
-  _badScoreValue: 2
+  _perfectScoreValue: 100
+  _goodScoreValue: 75
+  _mediumScoreValue: 50
+  _badScoreValue: 20
   _musicInGame: {fileID: 8300000, guid: c0d7cf26a7a78454da07ab4be339c8fa, type: 3}
   _musicPose: {fileID: 8300000, guid: 158a7020784b3654fb9ce1408c0779c0, type: 3}
+  _musicEnd: {fileID: 8300000, guid: 090e099acab0fc24c941adeb7f5ffb50, type: 3}
 --- !u!114 &8960511482343133076
 MonoBehaviour:
   m_ObjectHideFlags: 0

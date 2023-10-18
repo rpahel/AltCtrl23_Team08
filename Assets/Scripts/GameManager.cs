@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour, IDebug
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI _textZone;
+    [SerializeField] private GameObject _npc;
+    [SerializeField] private GameObject _dialogueZone;
     [SerializeField] private Image _characterBodyImage;
     [SerializeField] private Image _characterHeadImage;
     [SerializeField] private Image _characterEyesImage;
@@ -54,9 +56,8 @@ public class GameManager : MonoBehaviour, IDebug
     [Header("Audio")]
     [SerializeField] private AudioClip _musicInGame;
     [SerializeField] private AudioClip _musicPose;
+    [SerializeField] private AudioClip _musicEnd;
     
-    
-
     private int _roundNum;
     private int _score;
 
@@ -71,6 +72,8 @@ public class GameManager : MonoBehaviour, IDebug
     private Sprite _lastHeadSprite;
 
     private float _crystalBallTimer;
+
+    private bool _gameEnded;
 
     #endregion
 
@@ -121,8 +124,14 @@ public class GameManager : MonoBehaviour, IDebug
 
             if (speed > _sensiCrsytalBall)
             {
-                _crystalBallTimer += Time.deltaTime;
-                Debug.Log(_crystalBallTimer);
+                if (!_gameEnded)
+                {
+                    _crystalBallTimer += Time.deltaTime;
+                    Debug.Log(_crystalBallTimer);
+                    return;
+                }
+
+                StartCoroutine(ResetGame());
             }
         }
     }
@@ -143,10 +152,20 @@ public class GameManager : MonoBehaviour, IDebug
 
         if (_roundNum >= _roundCount + 1 || _questBuffer.Count == 0)
         {
+            _npc.SetActive(false);
+            _dialogueZone.SetActive(false);
             _scorePanel.SetActive(true);
-            _scoreText.text += $"TOTAL : {_score} golds";
+            
+            _scoreText.text += "\n" + $"TOTAL : {_score} golds";
+            
+            ServiceLocator.Get().ChangeMusic(_musicEnd);
+            _gameEnded = true;
+            
             return;
         }
+
+        _npc.SetActive(true);
+        _dialogueZone.SetActive(true);
 
         _currentQuest = GenerateRequest();
         _currentCharacter = CreateRandomCharacter();
@@ -272,7 +291,23 @@ public class GameManager : MonoBehaviour, IDebug
         {
             if (id != _currentQuest.SpecialSpells[i].Id) continue;
 
-            UpdateUI(_currentCharacter.NeutralSprite, _currentQuest.SpecialSentence);
+            if (_currentQuest.SpecialScoreValue is >= 0 and < 30)
+            {
+                UpdateUI(_currentCharacter.BadSprite, _currentQuest.SpecialSentence);
+            }
+            else if (_currentQuest.SpecialScoreValue is >= 30 and < 59)
+            {
+                UpdateUI(_currentCharacter.NeutralSprite, _currentQuest.SpecialSentence);
+            }
+            else if (_currentQuest.SpecialScoreValue is >= 60 and < 79)
+            {
+                UpdateUI(_currentCharacter.GoodSprite, _currentQuest.SpecialSentence);
+            }
+            else
+            {
+                UpdateUI(_currentCharacter.PerfectSprite, _currentQuest.SpecialSentence);
+            }
+            
             UpdateScore(_currentQuest.SpecialScoreValue);
             return;
         }
@@ -297,6 +332,31 @@ public class GameManager : MonoBehaviour, IDebug
     private void ChargeCrystalBall(string s)
     {
         _crystalBallTimer += 100f;
+    }
+
+    private IEnumerator ResetGame()
+    {
+        _gameEnded = false;
+        _roundNum = 0;
+        
+        _scorePanel.SetActive(false);
+        _scoreText.text = null;
+        
+        _score = 0;
+        _questHistory.Clear();
+        
+        ServiceLocator.Get().Reset();
+        ServiceLocator.Get().ChangeMusic(_musicInGame, true);
+                
+        for (int i = 0; i < _quests.Length; i++)
+        {
+            _questBuffer.Add(_quests[i]);
+        }
+
+        yield return new WaitForSeconds(3f);
+                
+        InitializeRound();
+        
     }
 
     #endregion

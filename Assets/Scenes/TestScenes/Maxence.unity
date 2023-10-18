@@ -128,6 +128,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3587673774038313437, guid: cdcfdadeeb2fc8140b9267cf86fdcdb1, type: 3}
   m_PrefabInstance: {fileID: 5741779474234376152}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &205573311 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2796063045800129656, guid: cdcfdadeeb2fc8140b9267cf86fdcdb1, type: 3}
+  m_PrefabInstance: {fileID: 5741779474234376152}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &230249222 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1677938174094616708, guid: cdcfdadeeb2fc8140b9267cf86fdcdb1, type: 3}
@@ -276,6 +281,11 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!1 &901376574 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3798284535920297010, guid: cdcfdadeeb2fc8140b9267cf86fdcdb1, type: 3}
+  m_PrefabInstance: {fileID: 5741779474234376152}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1227003822
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5278,6 +5288,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7607571666723518879, guid: e97176a17985eb64db8351087d2c8980, type: 3}
+      propertyPath: _npc
+      value: 
+      objectReference: {fileID: 901376574}
+    - target: {fileID: 7607571666723518879, guid: e97176a17985eb64db8351087d2c8980, type: 3}
       propertyPath: _textZone
       value: 
       objectReference: {fileID: 230249222}
@@ -5289,6 +5303,10 @@ PrefabInstance:
       propertyPath: _scorePanel
       value: 
       objectReference: {fileID: 108887258}
+    - target: {fileID: 7607571666723518879, guid: e97176a17985eb64db8351087d2c8980, type: 3}
+      propertyPath: _dialogueZone
+      value: 
+      objectReference: {fileID: 205573311}
     - target: {fileID: 7607571666723518879, guid: e97176a17985eb64db8351087d2c8980, type: 3}
       propertyPath: _timeToTakePose
       value: 2
@@ -5513,6 +5531,10 @@ PrefabInstance:
     - target: {fileID: 6301834221813205343, guid: cdcfdadeeb2fc8140b9267cf86fdcdb1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096374076001487479, guid: cdcfdadeeb2fc8140b9267cf86fdcdb1, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
