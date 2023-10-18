@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abd47cdca8f3d42499b2b3267cdb42c4, type: 3}
+  m_Name: Quest04
+  m_EditorClassIdentifier:
+  _isRandomNPC: 0
+  _character: {fileID: 0}
+  _requestSentence: My son got his head stuck in his chamber pot, again. Could you
+    help me unstuck this dumb ?
+  _maleQuestSound: {fileID: 8300000, guid: 84d9dc526096afb49a115fb30a058cda, type: 3}
+  _femaleQuestSound: {fileID: 8300000, guid: 0a0fed76d04493340bc34e12dcd41dba, type: 3}
+  _badSentence: I don't see how it can help him, but at least it'll teach him a lesson.
+  _mediumSpells:
+  - {fileID: 11400000, guid: 6b467d675122e7d4ab71122147e18550, type: 2}
+  - {fileID: 11400000, guid: 434988535a948f94e92d45a4fd7a1ec4, type: 2}
+  - {fileID: 11400000, guid: a62327da070e0724c95d3f66b51e440a, type: 2}
+  _mediumSentence: Let's just say it'll at least help me loosen him up a little.
+  _goodSpells:
+  - {fileID: 11400000, guid: dbb604da507cb924db9a3a76aed9b1ed, type: 2}
+  - {fileID: 11400000, guid: 7a6a030da9a53ca41acb260ef5b6c679, type: 2}
+  - {fileID: 11400000, guid: ef2e1ccad2243ff41812504579971aa9, type: 2}
+  _goodSentence: That'll get it unstuck again. At least until next time.
+  _perfectSpells:
+  - {fileID: 11400000, guid: de82075a715986c409f40508995d3f53, type: 2}
+  _perfectSentence: That's exactly what I wanted. I hope he doesn't get smart now.
+  _specialSpells:
+  - {fileID: 11400000, guid: 3052db1212aa1f440a10ad30fd359cea, type: 2}
+  _specialSentence: Eventually if he doesn't have a head, he can't wedge his head
+    in.
+  _specialScoreValue: 30
