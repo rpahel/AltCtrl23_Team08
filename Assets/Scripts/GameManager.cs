@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour, IDebug
 
     [Header("Scriptable Objects")]
     [SerializeField] private Quest[] _quests;
-    [SerializeField] private Character[] _characters;
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI _textZone;
@@ -64,10 +63,12 @@ public class GameManager : MonoBehaviour, IDebug
     private readonly List<Quest> _questBuffer = new();
     private Quest _currentQuest;
 
-    private Dictionary<Quest, int> _questHistory = new();
+    private readonly Dictionary<Quest, int> _questHistory = new();
 
-    private readonly List<Character> _characterBuffer = new();
     private Character _currentCharacter;
+
+    private Sprite _lastBodySprite;
+    private Sprite _lastHeadSprite;
 
     private float _crystalBallTimer;
 
@@ -98,11 +99,6 @@ public class GameManager : MonoBehaviour, IDebug
         for (int i = 0; i < _quests.Length; i++)
         {
             _questBuffer.Add(_quests[i]);
-        }
-
-        for (int i = 0; i < _characters.Length; i++)
-        {
-            _characterBuffer.Add(_characters[i]);
         }
     }
 
@@ -145,7 +141,7 @@ public class GameManager : MonoBehaviour, IDebug
         _roundNum++;
         _crystalBallTimer = 0f;
 
-        if (_roundNum >= _roundCount + 1 || _questBuffer.Count == 0 || _characterBuffer.Count == 0)
+        if (_roundNum >= _roundCount + 1 || _questBuffer.Count == 0)
         {
             _scorePanel.SetActive(true);
             _scoreText.text += $"TOTAL : {_score} golds";
@@ -176,48 +172,49 @@ public class GameManager : MonoBehaviour, IDebug
         return quest;
     }
 
-    private Character GenerateCharacter()
-    {
-        var random = Random.Range(0, _characterBuffer.Count);
-
-        var character = _characterBuffer[random];
-
-        //_characterBuffer.Remove(character);
-
-        return character;
-    }
-
     private Character CreateRandomCharacter()
     {
         var character = ScriptableObject.CreateInstance<Character>();
+        character.BodySprite = _lastBodySprite;
+        character.HeadSprite = _lastHeadSprite;
 
-        if (Random.Range(0, 100) < 50)
+        while (_lastBodySprite == character.BodySprite || _lastHeadSprite == character.HeadSprite)
         {
-            var headIndex = Random.Range(0, _maleHeadAssets.Length);
-            var bodyIndex = Random.Range(0, _maleBodyAssets.Length);
+            if (Random.Range(0, 100) < 50)
+            {
+                var headIndex = Random.Range(0, _maleHeadAssets.Length);
+                var bodyIndex = Random.Range(0, _maleBodyAssets.Length);
             
-            character.BodySprite = _maleBodyAssets[headIndex];
-            character.HeadSprite = _maleHeadAssets[bodyIndex];
+                character.BodySprite = _maleBodyAssets[bodyIndex];
+                character.HeadSprite = _maleHeadAssets[headIndex];
 
-            character.BadSprite = _maleBadEyesAssets[0];
-            character.NeutralSprite = _maleNeutralEyesAssets[0];
-            character.GoodSprite = _maleGoodEyesAssets[0];
-            character.PerfectSprite = _malePerfectEyesAssets[0];
-        }
-        else
-        {
-            var headIndex = Random.Range(0, _femaleHeadAssets.Length);
-            var bodyIndex = Random.Range(0, _femaleBodyAssets.Length);
+                character.BadSprite = _maleBadEyesAssets[0];
+                character.NeutralSprite = _maleNeutralEyesAssets[0];
+                character.GoodSprite = _maleGoodEyesAssets[0];
+                character.PerfectSprite = _malePerfectEyesAssets[0];
+
+                character.IsMale = true;
+            }
+            else
+            {
+                var headIndex = Random.Range(0, _femaleHeadAssets.Length);
+                var bodyIndex = Random.Range(0, _femaleBodyAssets.Length);
             
-            character.BodySprite = _femaleBodyAssets[headIndex];
-            character.HeadSprite = _femaleHeadAssets[bodyIndex];
-            
-            character.BadSprite = _femaleBadEyesAssets[0];
-            character.NeutralSprite = _femaleNeutralEyesAssets[0];
-            character.GoodSprite = _femaleGoodEyesAssets[0];
-            character.PerfectSprite = _femalePerfectEyesAssets[0];
+                character.BodySprite = _femaleBodyAssets[bodyIndex];
+                character.HeadSprite = _femaleHeadAssets[headIndex];
+
+                character.BadSprite = _femaleBadEyesAssets[0];
+                character.NeutralSprite = _femaleNeutralEyesAssets[0];
+                character.GoodSprite = _femaleGoodEyesAssets[0];
+                character.PerfectSprite = _femalePerfectEyesAssets[0];
+                
+                character.IsMale = false;
+            }
         }
-        
+
+        _lastBodySprite = character.BodySprite;
+        _lastHeadSprite = character.HeadSprite;
+
         return character;
     }
 

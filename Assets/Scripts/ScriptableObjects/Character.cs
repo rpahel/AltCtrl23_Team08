@@ -57,7 +57,12 @@ public class Character : ScriptableObject
 
         set => _bodySprite = value;
     }
-    public bool IsMale => _isMale;
+    public bool IsMale
+    {
+        get => _isMale;
+
+        set => _isMale = value;
+    }
 
     #endregion
 }
