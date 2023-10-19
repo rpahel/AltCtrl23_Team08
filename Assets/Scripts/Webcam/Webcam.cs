@@ -11,6 +11,9 @@ public class Webcam : MonoBehaviour
 {
     //== Fields =============================================
     [SerializeField, BoxGroup("Dependencies")]
+    private GoogleDriveManager _gDriveManager;
+    
+    [SerializeField, BoxGroup("Dependencies")]
     private string _webcamNameOverride = "";
     
     [SerializeField, BoxGroup("Dependencies")]
@@ -136,6 +139,7 @@ public class Webcam : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
             _wTexture.Pause();
+            _gDriveManager.TakeScreenShot();
             DoEndAnimation();
             yield return new WaitForSeconds(_endTransform.GetMaxDuration());
         }
