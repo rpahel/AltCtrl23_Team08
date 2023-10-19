@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour, IDebug
     [SerializeField] private Image _characterEyesImage;
     [SerializeField] private GameObject _scorePanel;
     [SerializeField] private TextMeshProUGUI _scoreText;
+    [SerializeField] private GameObject _webcamPanel;
+    [SerializeField] private Webcam _webcam;
 
     [Header("Game Settings")]
     [SerializeField] private int _roundCount = 8;
@@ -166,6 +168,7 @@ public class GameManager : MonoBehaviour, IDebug
 
         _npc.SetActive(true);
         _dialogueZone.SetActive(true);
+        _webcamPanel.SetActive(false);
 
         _currentQuest = GenerateRequest();
         _currentCharacter = CreateRandomCharacter();
@@ -247,8 +250,14 @@ public class GameManager : MonoBehaviour, IDebug
         }
         
         ServiceLocator.Get().ChangeMusic(_musicPose);
+        
+        _webcamPanel.SetActive(true);
+        _webcam.PlayWebcam();
+        _webcam.DoBeginAnimation();
 
         yield return new WaitForSeconds(_timeToTakePose);
+        
+        _webcam.DoEndAnimation();
 
         RoundEnd(poseId);
         ServiceLocator.Get().ChangeMusic(_musicInGame, true);
