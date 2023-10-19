@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ScrollShop.AI;
 using ScrollShop.CustomDebug;
+using ScrollShop.Enums;
 using ScrollShop.Interfaces;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -67,7 +68,8 @@ public class GameManager : MonoBehaviour, IDebug
     [Header("Set Up")]
     [SerializeField] private AiManager _aiManager;
     [SerializeField] private Spell[] _spells;
-    [SerializeField] private Spell _defaultSpell;
+    [SerializeField] private Pose _defaultTypePose;
+    [SerializeField] private Pose _defaultEffectPose;
 
     private int _roundNum;
     private int _score;
@@ -122,7 +124,8 @@ public class GameManager : MonoBehaviour, IDebug
         _playerPoses.Add(0, default);
         _playerPoses.Add(1, default);
 
-        _currentSpell = _defaultSpell;
+        _playerPoses[0] = _defaultTypePose;
+        _playerPoses[1] = _defaultEffectPose;
     }
 
     private void Start()
@@ -281,6 +284,8 @@ public class GameManager : MonoBehaviour, IDebug
         
         _aiManager.GetBridge.UnsubscribeFromPoseChangedEvent(UpdatePose);
 
+        Debug.Log(_playerPoses[0].GetAttribute +", " + _playerPoses[1].GetAttribute);
+        
         for (int i = 0; i < _spells.Length; i++)
         {
             if (_spells[i].FirstAttribute == _playerPoses[0].GetAttribute
@@ -412,6 +417,7 @@ public class GameManager : MonoBehaviour, IDebug
 
     private void UpdatePose(int index, ScrollShop.Structs.Pose pose)
     {
+        Debug.Log(index + ", " + pose);
         _playerPoses[index] = pose;
     }
 

@@ -156,7 +156,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 01b6fd60b4580f841b217a7f381ca6a2, type: 2}
   - {fileID: 11400000, guid: 9996f081e2f0e4c428c1c9ce91ae7d05, type: 2}
   - {fileID: 11400000, guid: afe9de5ec58750f42ac53214db40f888, type: 2}
-  _defaultSpell: {fileID: 11400000, guid: dbb604da507cb924db9a3a76aed9b1ed, type: 2}
+  _defaultTypePose:
+    _name: 
+    _id: 0
+    _attribute: 1
+  _defaultEffectPose:
+    _name: 
+    _id: 0
+    _attribute: 7
 --- !u!114 &8960511482343133076
 MonoBehaviour:
   m_ObjectHideFlags: 0
