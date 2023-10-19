@@ -257,6 +257,7 @@ public class GameManager : MonoBehaviour, IDebug
 
         yield return new WaitForSeconds(_timeToTakePose);
         
+        _webcam.PauseWebcam();
         _webcam.DoEndAnimation();
 
         RoundEnd(poseId);
