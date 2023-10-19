@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using NaughtyAttributes;
 using ScrollShop.CustomDebug;
 using ScrollShop.Enums;
@@ -23,6 +24,7 @@ namespace ScrollShop.AI
         
         private event Action<int, Pose> OnPoseChanged; //Action<index, Pose>
         private Dictionary<string, Pose> _posesDatabase;
+        private Dictionary<(int, Pose), int> _weights = new Dictionary<(int, Pose), int>(300);
         private Pose[] _previousPoses; // Does NOT remember ALL previous poses, but the last previous pose of each player index.
         private Pose[] _currentPoses; // Stock current pose per player index
         
@@ -124,8 +126,56 @@ namespace ScrollShop.AI
             // Every check has passed, lets gooo
             _previousPoses[index] = _currentPoses[index];
             _currentPoses[index] = matchPose;
+
+            if (!_weights.ContainsKey((index, matchPose)))
+            {
+                //if (_weights.Count >= 295) TODO
+                //{
+                //    _weights.Remove();
+                //}
+                _weights.Add((index, matchPose), 0);
+            }
+            else
+                _weights[(index, matchPose)]++;
             
             OnPoseChanged?.Invoke(index, matchPose);
+        }
+
+        public Pose GetCurrentPose(int playerIndex)
+        {
+            return _currentPoses[playerIndex];
+        }
+        
+        public Pose GetPoseByWeight(int playerIndex)
+        {
+            Pose heaviestPose = _weights.Where(i => i.Key.Item1 == playerIndex).Max().Key.Item2;
+            
+            if(DebugConsole.Instance)
+                DebugConsole.Instance.Print($"Bridge : Pose with most weight for player {playerIndex} is " + heaviestPose.GetName);
+
+            return heaviestPose;
+        }
+
+        public void ClearWeights()
+        {
+            _weights.Clear();
+        }
+        
+        public void PrintRecognisesPoses()
+        {
+            if (!DebugConsole.Instance)
+                return;
+
+            if (_weights.Count <= 0)
+            {
+                DebugConsole.Instance.Print("Bridge : _weights Dictionary is empty.");
+                return;
+            }
+
+            DebugConsole.Instance.Print($"Bridge : Here are all recognised poses ({_weights.Count}) :");
+
+            foreach (var element in _weights)
+                DebugConsole.Instance.Print($"Bridge : Player = {element.Key.Item1}, Pose = {element.Key.Item2}, Weight = {element.Value}");
         }
 
         public void SubscribeToPoseChangedEvent(Action<int, Pose> method)
