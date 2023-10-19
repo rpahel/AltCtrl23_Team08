@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace ScrollShop.Interfaces
 {
@@ -17,6 +18,18 @@ namespace ScrollShop.Interfaces
         }
 
         public AudioClip Music
+        {
+            get => throw new System.NotImplementedException();
+            set => throw new System.NotImplementedException();
+        }
+
+        public AudioMixerGroup MusicMixerGroupe
+        {
+            get => throw new System.NotImplementedException();
+            set => throw new System.NotImplementedException();
+        }
+
+        public AudioMixerGroup SfxMixerGroupe
         {
             get => throw new System.NotImplementedException();
             set => throw new System.NotImplementedException();

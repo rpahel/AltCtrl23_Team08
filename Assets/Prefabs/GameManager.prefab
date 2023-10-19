@@ -49,6 +49,7 @@ MonoBehaviour:
   _sensiCrsytalBall: 3
   _timeToChargeEnergy: 3
   _timeToTakePose: 5
+  _timeBeforePhotoHiding: 4
   _timeBeforeNextRound: 10
   _perfectScoreValue: 100
   _goodScoreValue: 75
@@ -104,6 +105,58 @@ MonoBehaviour:
   _scoreText: {fileID: 0}
   _webcamPanel: {fileID: 0}
   _webcam: {fileID: 0}
+  _spellNameImage: {fileID: 0}
+  _aiManager: {fileID: 0}
+  _spells:
+  - {fileID: 11400000, guid: dbb604da507cb924db9a3a76aed9b1ed, type: 2}
+  - {fileID: 11400000, guid: 9dddeb6493ee4514996399755614d22e, type: 2}
+  - {fileID: 11400000, guid: 90b46de26bf9a9947baee1f217b67e1c, type: 2}
+  - {fileID: 11400000, guid: 035486f7ae969164e93aad987c8eb48e, type: 2}
+  - {fileID: 11400000, guid: 20604ac93d812f04f982bc098e72d685, type: 2}
+  - {fileID: 11400000, guid: 6f0fe44baade9fa448ab6bc848855f62, type: 2}
+  - {fileID: 11400000, guid: a0a271c6d31c42a48af33de660f68a69, type: 2}
+  - {fileID: 11400000, guid: 1a457d4eb81c4c64b86988f98f60c697, type: 2}
+  - {fileID: 11400000, guid: de82075a715986c409f40508995d3f53, type: 2}
+  - {fileID: 11400000, guid: 7a6a030da9a53ca41acb260ef5b6c679, type: 2}
+  - {fileID: 11400000, guid: 0008d9ff52698eb49b779b0abb1c88e5, type: 2}
+  - {fileID: 11400000, guid: 642f8b1ff2d4b3746b4240d4d9baa516, type: 2}
+  - {fileID: 11400000, guid: ef2e1ccad2243ff41812504579971aa9, type: 2}
+  - {fileID: 11400000, guid: 1f529791da7ced44987ae949f8a54405, type: 2}
+  - {fileID: 11400000, guid: 8ea5231e2577d8047926816010461bc5, type: 2}
+  - {fileID: 11400000, guid: a62327da070e0724c95d3f66b51e440a, type: 2}
+  - {fileID: 11400000, guid: f5c2cb065f8345844a90d49e9157031c, type: 2}
+  - {fileID: 11400000, guid: 0e51b008d484130458f0e8ed0e73ca9e, type: 2}
+  - {fileID: 11400000, guid: 8cb8d100a62f94c4dac49b11c0abf73b, type: 2}
+  - {fileID: 11400000, guid: 281afb6310f68cc4195705e6a0eb28bb, type: 2}
+  - {fileID: 11400000, guid: 98cd56ae78274394da800b889e3ab088, type: 2}
+  - {fileID: 11400000, guid: ce55d1f5525b93443b380a77e42a134d, type: 2}
+  - {fileID: 11400000, guid: 59bf93e26160b214aacae13fb8c4ce76, type: 2}
+  - {fileID: 11400000, guid: f110eee541b7218429a1ee0db7ccc8db, type: 2}
+  - {fileID: 11400000, guid: 3052db1212aa1f440a10ad30fd359cea, type: 2}
+  - {fileID: 11400000, guid: 946ff9d27a94f2f429cdeb35edb05e50, type: 2}
+  - {fileID: 11400000, guid: f0c3f0f5381d4aa40ac000912358fbc3, type: 2}
+  - {fileID: 11400000, guid: a7c7e11085cf63c41bc0092a04c07f7a, type: 2}
+  - {fileID: 11400000, guid: 0c37f9d8aa834b641acf1b3b8a39adf9, type: 2}
+  - {fileID: 11400000, guid: 54267619ff259804893ec4d7122a506d, type: 2}
+  - {fileID: 11400000, guid: 8806a7e54dfc97c46b59a959069a00c2, type: 2}
+  - {fileID: 11400000, guid: 6f54c68ee147c2648bb18875fb0f89c3, type: 2}
+  - {fileID: 11400000, guid: 3505f568205a1c542bd897138c3e19cc, type: 2}
+  - {fileID: 11400000, guid: bc813d61ed698934daf5ffd1f443a402, type: 2}
+  - {fileID: 11400000, guid: 97388ccb1ce94ca4d8e3779ebd37d6b8, type: 2}
+  - {fileID: 11400000, guid: ef681d2d6d6da6a46a6cb31fa0b6d135, type: 2}
+  - {fileID: 11400000, guid: 2b4481b2bc8f51f4ab8fb7ec9fe25da9, type: 2}
+  - {fileID: 11400000, guid: 67e8cf6755a00d945bb4c52a7f2eefde, type: 2}
+  - {fileID: 11400000, guid: 5171a48651780774da79a9332b5f74ce, type: 2}
+  - {fileID: 11400000, guid: 2b2c546bdd44310428509ad52a9457c4, type: 2}
+  - {fileID: 11400000, guid: 434988535a948f94e92d45a4fd7a1ec4, type: 2}
+  - {fileID: 11400000, guid: b634fec21ffca0d4280e817747019101, type: 2}
+  - {fileID: 11400000, guid: 9d8a53ef2b7a6f547b29f31020fb73b5, type: 2}
+  - {fileID: 11400000, guid: 11852937d323c5c4492bc3c0790fae0c, type: 2}
+  - {fileID: 11400000, guid: 6b467d675122e7d4ab71122147e18550, type: 2}
+  - {fileID: 11400000, guid: 01b6fd60b4580f841b217a7f381ca6a2, type: 2}
+  - {fileID: 11400000, guid: 9996f081e2f0e4c428c1c9ce91ae7d05, type: 2}
+  - {fileID: 11400000, guid: afe9de5ec58750f42ac53214db40f888, type: 2}
+  _defaultSpell: {fileID: 11400000, guid: dbb604da507cb924db9a3a76aed9b1ed, type: 2}
 --- !u!114 &8960511482343133076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,3 +169,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7abb299a94213c1449aeaaf792407522, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sfxMixerGroup: {fileID: -1739335320083185827, guid: 76f54af84096cfa49a2fdf2ffc2d3642, type: 2}
+  _musicMixerGroup: {fileID: 5329425675486116504, guid: 76f54af84096cfa49a2fdf2ffc2d3642, type: 2}
