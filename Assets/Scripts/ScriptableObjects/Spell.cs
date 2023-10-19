@@ -17,6 +17,8 @@ public class Spell : ScriptableObject
     [SerializeField] private AudioClip _sfxType;
     [SerializeField] private AudioClip _sfxEffect;
 
+    [SerializeField] private Sprite _nameSprite;
+
     #endregion
 
     #region Properties
