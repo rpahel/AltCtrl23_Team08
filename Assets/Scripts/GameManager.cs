@@ -10,8 +10,29 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour, IDebug
 {
     #region Fields
+    
+    [Header("Game Settings")]
+    [SerializeField] private int _roundCount = 8;
+    [SerializeField] private float _sensiCrsytalBall = 10f;
+    [SerializeField] private float _timeToChargeEnergy = 3f;
+    [SerializeField] private float _timeToTakePose = 7f;
+    [SerializeField] private float _timeBeforeNextRound = 10f;
 
-    [Header("NPC Assets")]
+    [Header("Score Values")]
+    [SerializeField] private int _perfectScoreValue = 10;
+    [SerializeField] private int _goodScoreValue = 8;
+    [SerializeField] private int _mediumScoreValue = 5;
+    [SerializeField] private int _badScoreValue = 2;
+    
+    [Header("Audio")]
+    [SerializeField] private AudioClip _musicInGame;
+    [SerializeField] private AudioClip _musicPose;
+    [SerializeField] private AudioClip _musicEnd;
+    
+    [Header("Scriptable Objects")]
+    [SerializeField] private Quest[] _quests;
+    
+    [Header("NPC assets")]
     [SerializeField] private Sprite[] _maleHeadAssets;
     [SerializeField] private Sprite[] _maleBodyAssets;
     [SerializeField] private Sprite[] _maleNeutralEyesAssets;
@@ -25,10 +46,6 @@ public class GameManager : MonoBehaviour, IDebug
     [SerializeField] private Sprite[] _femaleGoodEyesAssets;
     [SerializeField] private Sprite[] _femalePerfectEyesAssets;
     [SerializeField] private Sprite[] _femaleBadEyesAssets;
-    
-
-    [Header("Scriptable Objects")]
-    [SerializeField] private Quest[] _quests;
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI _textZone;
@@ -42,24 +59,6 @@ public class GameManager : MonoBehaviour, IDebug
     [SerializeField] private GameObject _webcamPanel;
     [SerializeField] private Webcam _webcam;
 
-    [Header("Game Settings")]
-    [SerializeField] private int _roundCount = 8;
-    [SerializeField] private float _timeToChargeEnergy = 3f;
-    [SerializeField] private float _timeToTakePose = 7f;
-    [SerializeField] private float _timeBeforeNextRound = 10f;
-    [SerializeField] private float _sensiCrsytalBall = 10f;
-
-    [Header("Score Values")]
-    [SerializeField] private int _perfectScoreValue = 10;
-    [SerializeField] private int _goodScoreValue = 8;
-    [SerializeField] private int _mediumScoreValue = 5;
-    [SerializeField] private int _badScoreValue = 2;
-    
-    [Header("Audio")]
-    [SerializeField] private AudioClip _musicInGame;
-    [SerializeField] private AudioClip _musicPose;
-    [SerializeField] private AudioClip _musicEnd;
-    
     private int _roundNum;
     private int _score;
 
@@ -257,6 +256,7 @@ public class GameManager : MonoBehaviour, IDebug
 
         yield return new WaitForSeconds(_timeToTakePose);
         
+        _webcam.PauseWebcam();
         _webcam.DoEndAnimation();
 
         RoundEnd(poseId);

@@ -217,7 +217,7 @@ MonoBehaviour:
     scale:
       ease: 0
       duration: 0
-      vector: {x: -1, y: 1, z: 1}
+      vector: {x: 1, y: 1, z: 1}
   _debugPlayBeginAnimationOnStart: 0
   _beginTransform:
     position:
@@ -245,4 +245,4 @@ MonoBehaviour:
     scale:
       ease: 0
       duration: 0.8
-      vector: {x: -0.2, y: 0.2, z: 0.2}
+      vector: {x: 0.2, y: 0.2, z: 0.2}

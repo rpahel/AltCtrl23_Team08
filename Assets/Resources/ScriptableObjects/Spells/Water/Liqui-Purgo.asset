@@ -18,3 +18,4 @@ MonoBehaviour:
   _audioClip: {fileID: 8300000, guid: 56d07a5defa3feb4d8f6d2d742a1e812, type: 3}
   _sfxType: {fileID: 8300000, guid: 47c42b9354c4fbf4daaeb95b9932ea6c, type: 3}
   _sfxEffect: {fileID: 8300000, guid: b82a8bfadaf2bf84b82a10fbca53d87f, type: 3}
+  _nameSprite: {fileID: 21300000, guid: 4c7681e5091a9124f9911c45bb535b84, type: 3}
