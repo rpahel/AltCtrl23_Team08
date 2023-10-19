@@ -25,5 +25,9 @@ namespace ScrollShop.Interfaces
         public void ChangeMusic(AudioClip audioClip, bool mainMusic = false){}
 
         public void PlaySound(AudioClip audioClip){}
+        public void Reset()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
