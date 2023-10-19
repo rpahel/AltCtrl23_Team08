@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.elringus.unitygoogledrive": "https://github.com/Elringus/UnityGoogleDrive.git#package",
+    "com.endel.nativewebsocket": "https://github.com/endel/NativeWebSocket.git#upm",
     "com.unity.collab-proxy": "2.0.7",
     "com.unity.feature.2d": "2.0.0",
     "com.unity.ide.rider": "3.0.26",

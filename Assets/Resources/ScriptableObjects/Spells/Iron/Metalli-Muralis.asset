@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07114c2bc0b128a48b9a10c60b8af3e2, type: 3}
-  m_Name: Metalli-Cresco
+  m_Name: Metalli-Muralis
   m_EditorClassIdentifier: 
-  _id: 20
+  _id: 17
   _firstAttribute: 3
-  _secondAttribute: 11
-  _audioClip: {fileID: 8300000, guid: 6ad88cf7bdfefe945b3fdd5c1bdba652, type: 3}
+  _secondAttribute: 8
+  _audioClip: {fileID: 8300000, guid: 47a0cd85920d10049b7600a0c1a4d171, type: 3}
+  _sfxType: {fileID: 8300000, guid: a7be2540b2a8fdb46ad7cac18d881fbe, type: 3}
+  _sfxEffect: {fileID: 8300000, guid: 7b81837e7e9287442952b9f92ec4dd4a, type: 3}

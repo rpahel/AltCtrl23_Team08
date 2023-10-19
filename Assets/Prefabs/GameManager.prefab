@@ -45,6 +45,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eca9ab0a984f3c4daf8eb1154e38812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maleHeadAssets:
+  - {fileID: 21300000, guid: f0498550f27c5f240868557cadbdeaba, type: 3}
+  - {fileID: 21300000, guid: 78f935f19724a9445b6a30f96eba1449, type: 3}
+  _maleBodyAssets:
+  - {fileID: 21300000, guid: 281317b6d573d55449abcae040e4135b, type: 3}
+  - {fileID: 21300000, guid: 7f058c01aac9b4d46a5ba24d02c7c179, type: 3}
+  _maleNeutralEyesAssets:
+  - {fileID: 21300000, guid: 59e00e10ffeef5d478fbd8c63e7df446, type: 3}
+  _maleGoodEyesAssets:
+  - {fileID: 21300000, guid: bb31e4d2379651c43b60692e6f422b4b, type: 3}
+  _malePerfectEyesAssets:
+  - {fileID: 21300000, guid: ba22d0bef25d87a479460f88d598bcf6, type: 3}
+  _maleBadEyesAssets:
+  - {fileID: 21300000, guid: 8abed7e77f71c884fb73d58fd2e5e8a5, type: 3}
+  _femaleHeadAssets:
+  - {fileID: 21300000, guid: 0cb8d677abb0de94ea9ddf2d6c715c40, type: 3}
+  - {fileID: 21300000, guid: 388fd26c7521d6c4c94827996cfb19bf, type: 3}
+  _femaleBodyAssets:
+  - {fileID: 21300000, guid: 2b55b11a07ff3aa48b580b16e3574dfa, type: 3}
+  - {fileID: 21300000, guid: b857441f5790c0d45b11a562de4d9b96, type: 3}
+  _femaleNeutralEyesAssets:
+  - {fileID: 21300000, guid: d726d2ca7fcaa264497c17a7a2e31039, type: 3}
+  _femaleGoodEyesAssets:
+  - {fileID: 21300000, guid: 35a62853ba5d30246a1ae3ca5f43a687, type: 3}
+  _femalePerfectEyesAssets:
+  - {fileID: 21300000, guid: fa57476976877d44aa9c91dbe68b6470, type: 3}
+  _femaleBadEyesAssets:
+  - {fileID: 21300000, guid: b0603f7fc44293f48823439c72544819, type: 3}
   _quests:
   - {fileID: 11400000, guid: a87268fa9ba620d4dacbaae8fb26ea77, type: 2}
   - {fileID: 11400000, guid: 25664cf7ffc913d4ab2f7572c49da07f, type: 2}
@@ -54,11 +82,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dcc00cc2d426148488ce11e876229e72, type: 2}
   - {fileID: 11400000, guid: 01615607826fe94428ccd47ca931b9a8, type: 2}
   - {fileID: 11400000, guid: 4c536268850d5e94da9c8eec1bf087e3, type: 2}
-  _characters:
-  - {fileID: 11400000, guid: 9c21d01ffa693f84cbbc77808ca666b6, type: 2}
-  - {fileID: 11400000, guid: 2b03a161005d2ee4ba1258928cba4c0b, type: 2}
   _textZone: {fileID: 0}
-  _characterImage: {fileID: 0}
+  _npc: {fileID: 0}
+  _dialogueZone: {fileID: 0}
+  _characterBodyImage: {fileID: 0}
+  _characterHeadImage: {fileID: 0}
+  _characterEyesImage: {fileID: 0}
   _scorePanel: {fileID: 0}
   _scoreText: {fileID: 0}
   _roundCount: 8
@@ -66,12 +95,13 @@ MonoBehaviour:
   _timeToTakePose: 7
   _timeBeforeNextRound: 10
   _sensiCrsytalBall: 10
-  _perfectScoreValue: 10
-  _goodScoreValue: 8
-  _mediumScoreValue: 5
-  _badScoreValue: 2
+  _perfectScoreValue: 100
+  _goodScoreValue: 75
+  _mediumScoreValue: 50
+  _badScoreValue: 20
   _musicInGame: {fileID: 8300000, guid: c0d7cf26a7a78454da07ab4be339c8fa, type: 3}
   _musicPose: {fileID: 8300000, guid: 158a7020784b3654fb9ce1408c0779c0, type: 3}
+  _musicEnd: {fileID: 8300000, guid: 090e099acab0fc24c941adeb7f5ffb50, type: 3}
 --- !u!114 &8960511482343133076
 MonoBehaviour:
   m_ObjectHideFlags: 0

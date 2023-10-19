@@ -11,19 +11,36 @@ public class GameManager : MonoBehaviour, IDebug
 {
     #region Fields
 
-    // [Header("NPC Assets")]
-    // [SerializeField] private Sprite[] _headAssets;
-    // [SerializeField] private Sprite[] _bodyAssets;
+    [Header("NPC Assets")]
+    [SerializeField] private Sprite[] _maleHeadAssets;
+    [SerializeField] private Sprite[] _maleBodyAssets;
+    [SerializeField] private Sprite[] _maleNeutralEyesAssets;
+    [SerializeField] private Sprite[] _maleGoodEyesAssets;
+    [SerializeField] private Sprite[] _malePerfectEyesAssets;
+    [SerializeField] private Sprite[] _maleBadEyesAssets;
+    
+    [SerializeField] private Sprite[] _femaleHeadAssets;
+    [SerializeField] private Sprite[] _femaleBodyAssets;
+    [SerializeField] private Sprite[] _femaleNeutralEyesAssets;
+    [SerializeField] private Sprite[] _femaleGoodEyesAssets;
+    [SerializeField] private Sprite[] _femalePerfectEyesAssets;
+    [SerializeField] private Sprite[] _femaleBadEyesAssets;
+    
 
     [Header("Scriptable Objects")]
     [SerializeField] private Quest[] _quests;
-    [SerializeField] private Character[] _characters;
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI _textZone;
-    [SerializeField] private Image _characterImage;
+    [SerializeField] private GameObject _npc;
+    [SerializeField] private GameObject _dialogueZone;
+    [SerializeField] private Image _characterBodyImage;
+    [SerializeField] private Image _characterHeadImage;
+    [SerializeField] private Image _characterEyesImage;
     [SerializeField] private GameObject _scorePanel;
     [SerializeField] private TextMeshProUGUI _scoreText;
+    [SerializeField] private GameObject _webcamPanel;
+    [SerializeField] private Webcam _webcam;
 
     [Header("Game Settings")]
     [SerializeField] private int _roundCount = 8;
@@ -41,21 +58,24 @@ public class GameManager : MonoBehaviour, IDebug
     [Header("Audio")]
     [SerializeField] private AudioClip _musicInGame;
     [SerializeField] private AudioClip _musicPose;
+    [SerializeField] private AudioClip _musicEnd;
     
-    
-
     private int _roundNum;
     private int _score;
 
     private readonly List<Quest> _questBuffer = new();
     private Quest _currentQuest;
 
-    private Dictionary<Quest, int> _questHistory = new();
+    private readonly Dictionary<Quest, int> _questHistory = new();
 
-    private readonly List<Character> _characterBuffer = new();
     private Character _currentCharacter;
 
+    private Sprite _lastBodySprite;
+    private Sprite _lastHeadSprite;
+
     private float _crystalBallTimer;
+
+    private bool _gameEnded;
 
     #endregion
 
@@ -85,11 +105,6 @@ public class GameManager : MonoBehaviour, IDebug
         {
             _questBuffer.Add(_quests[i]);
         }
-
-        for (int i = 0; i < _characters.Length; i++)
-        {
-            _characterBuffer.Add(_characters[i]);
-        }
     }
 
     private void Start()
@@ -111,8 +126,14 @@ public class GameManager : MonoBehaviour, IDebug
 
             if (speed > _sensiCrsytalBall)
             {
-                _crystalBallTimer += Time.deltaTime;
-                Debug.Log(_crystalBallTimer);
+                if (!_gameEnded)
+                {
+                    _crystalBallTimer += Time.deltaTime;
+                    Debug.Log(_crystalBallTimer);
+                    return;
+                }
+
+                StartCoroutine(ResetGame());
             }
         }
     }
@@ -131,18 +152,32 @@ public class GameManager : MonoBehaviour, IDebug
         _roundNum++;
         _crystalBallTimer = 0f;
 
-        if (_roundNum >= _roundCount + 1 || _questBuffer.Count == 0 || _characterBuffer.Count == 0)
+        if (_roundNum >= _roundCount + 1 || _questBuffer.Count == 0)
         {
+            _npc.SetActive(false);
+            _dialogueZone.SetActive(false);
             _scorePanel.SetActive(true);
-            _scoreText.text += $"TOTAL : {_score} golds";
+            
+            _scoreText.text += "\n" + $"TOTAL : {_score} golds";
+            
+            ServiceLocator.Get().ChangeMusic(_musicEnd);
+            _gameEnded = true;
+            
             return;
         }
 
+        _npc.SetActive(true);
+        _dialogueZone.SetActive(true);
+        _webcamPanel.SetActive(false);
+
         _currentQuest = GenerateRequest();
-        _currentCharacter = GenerateCharacter();
+        _currentCharacter = CreateRandomCharacter();
 
         _textZone.text = _currentQuest.RequestSentence;
-        _characterImage.sprite = _currentCharacter.NormalSprite;
+        _characterBodyImage.sprite = _currentCharacter.BodySprite;
+        _characterHeadImage.sprite = _currentCharacter.HeadSprite;
+        _characterEyesImage.sprite = _currentCharacter.NeutralSprite;
+        
         ServiceLocator.Get().PlaySound(_currentCharacter.IsMale ? _currentQuest.MaleQuestSound : _currentQuest.FemaleQuestSound);
 
         StartCoroutine(PlayRound());
@@ -159,20 +194,48 @@ public class GameManager : MonoBehaviour, IDebug
         return quest;
     }
 
-    private Character GenerateCharacter()
+    private Character CreateRandomCharacter()
     {
-        // if (_roundNum < 3)
-        // {
-        //     var surprise = _characterBuffer[0];
-        //     _characterBuffer.Remove(surprise);
-        //     return surprise;
-        // }
+        var character = ScriptableObject.CreateInstance<Character>();
+        character.BodySprite = _lastBodySprite;
+        character.HeadSprite = _lastHeadSprite;
 
-        var random = Random.Range(0, _characterBuffer.Count);
+        while (_lastBodySprite == character.BodySprite || _lastHeadSprite == character.HeadSprite)
+        {
+            if (Random.Range(0, 100) < 50)
+            {
+                var headIndex = Random.Range(0, _maleHeadAssets.Length);
+                var bodyIndex = Random.Range(0, _maleBodyAssets.Length);
+            
+                character.BodySprite = _maleBodyAssets[bodyIndex];
+                character.HeadSprite = _maleHeadAssets[headIndex];
 
-        var character = _characterBuffer[random];
+                character.BadSprite = _maleBadEyesAssets[0];
+                character.NeutralSprite = _maleNeutralEyesAssets[0];
+                character.GoodSprite = _maleGoodEyesAssets[0];
+                character.PerfectSprite = _malePerfectEyesAssets[0];
 
-        //_characterBuffer.Remove(character);
+                character.IsMale = true;
+            }
+            else
+            {
+                var headIndex = Random.Range(0, _femaleHeadAssets.Length);
+                var bodyIndex = Random.Range(0, _femaleBodyAssets.Length);
+            
+                character.BodySprite = _femaleBodyAssets[bodyIndex];
+                character.HeadSprite = _femaleHeadAssets[headIndex];
+
+                character.BadSprite = _femaleBadEyesAssets[0];
+                character.NeutralSprite = _femaleNeutralEyesAssets[0];
+                character.GoodSprite = _femaleGoodEyesAssets[0];
+                character.PerfectSprite = _femalePerfectEyesAssets[0];
+                
+                character.IsMale = false;
+            }
+        }
+
+        _lastBodySprite = character.BodySprite;
+        _lastHeadSprite = character.HeadSprite;
 
         return character;
     }
@@ -187,8 +250,14 @@ public class GameManager : MonoBehaviour, IDebug
         }
         
         ServiceLocator.Get().ChangeMusic(_musicPose);
+        
+        _webcamPanel.SetActive(true);
+        _webcam.PlayWebcam();
+        _webcam.DoBeginAnimation();
 
         yield return new WaitForSeconds(_timeToTakePose);
+        
+        _webcam.DoEndAnimation();
 
         RoundEnd(poseId);
         ServiceLocator.Get().ChangeMusic(_musicInGame, true);
@@ -204,7 +273,7 @@ public class GameManager : MonoBehaviour, IDebug
         {
             if (id != _currentQuest.MediumSpells[i].Id) continue;
 
-            UpdateUI(_currentCharacter.NormalSprite, _currentQuest.MediumSentence);
+            UpdateUI(_currentCharacter.NeutralSprite, _currentQuest.MediumSentence);
             UpdateScore(_mediumScoreValue);;
             return;
         }
@@ -231,7 +300,23 @@ public class GameManager : MonoBehaviour, IDebug
         {
             if (id != _currentQuest.SpecialSpells[i].Id) continue;
 
-            UpdateUI(_currentCharacter.SpecialSprite, _currentQuest.SpecialSentence);
+            if (_currentQuest.SpecialScoreValue is >= 0 and < 30)
+            {
+                UpdateUI(_currentCharacter.BadSprite, _currentQuest.SpecialSentence);
+            }
+            else if (_currentQuest.SpecialScoreValue is >= 30 and < 59)
+            {
+                UpdateUI(_currentCharacter.NeutralSprite, _currentQuest.SpecialSentence);
+            }
+            else if (_currentQuest.SpecialScoreValue is >= 60 and < 79)
+            {
+                UpdateUI(_currentCharacter.GoodSprite, _currentQuest.SpecialSentence);
+            }
+            else
+            {
+                UpdateUI(_currentCharacter.PerfectSprite, _currentQuest.SpecialSentence);
+            }
+            
             UpdateScore(_currentQuest.SpecialScoreValue);
             return;
         }
@@ -242,7 +327,7 @@ public class GameManager : MonoBehaviour, IDebug
 
     private void UpdateUI(Sprite image, string characterSentence)
     {
-        _characterImage.sprite = image;
+        _characterEyesImage.sprite = image;
         _textZone.text = characterSentence;
     }
 
@@ -256,6 +341,31 @@ public class GameManager : MonoBehaviour, IDebug
     private void ChargeCrystalBall(string s)
     {
         _crystalBallTimer += 100f;
+    }
+
+    private IEnumerator ResetGame()
+    {
+        _gameEnded = false;
+        _roundNum = 0;
+        
+        _scorePanel.SetActive(false);
+        _scoreText.text = null;
+        
+        _score = 0;
+        _questHistory.Clear();
+        
+        ServiceLocator.Get().Reset();
+        ServiceLocator.Get().ChangeMusic(_musicInGame, true);
+                
+        for (int i = 0; i < _quests.Length; i++)
+        {
+            _questBuffer.Add(_quests[i]);
+        }
+
+        yield return new WaitForSeconds(3f);
+                
+        InitializeRound();
+        
     }
 
     #endregion

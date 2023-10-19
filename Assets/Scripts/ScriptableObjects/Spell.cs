@@ -14,6 +14,8 @@ public class Spell : ScriptableObject
     [SerializeField] private ATTRIBUTE _secondAttribute;
 
     [SerializeField] private AudioClip _audioClip;
+    [SerializeField] private AudioClip _sfxType;
+    [SerializeField] private AudioClip _sfxEffect;
 
     #endregion
 

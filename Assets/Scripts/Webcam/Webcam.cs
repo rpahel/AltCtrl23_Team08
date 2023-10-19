@@ -24,6 +24,12 @@ public class Webcam : MonoBehaviour
     
     [SerializeField, BoxGroup("Dependencies")]
     private Image _image;
+    
+    [SerializeField, BoxGroup("Dependencies")]
+    private Image _panelImage;
+
+    [SerializeField]
+    private WebcamAnimationTransform _defaultTransform;
 
 #if UNITY_EDITOR
     [SerializeField, BoxGroup("Animations")]
@@ -47,7 +53,7 @@ public class Webcam : MonoBehaviour
     public void DoBeginAnimation()
     {
         // Setup
-        Transform t = _image.transform;
+        Transform t = _panelImage.transform;
         Vector2 targetPos = t.localPosition;
         Vector3 targetRot = t.localRotation.eulerAngles;
         Vector3 targetScale = t.localScale;
@@ -56,9 +62,9 @@ public class Webcam : MonoBehaviour
         t.localScale = _beginTransform.scale.vector;
         
         // Animation
-        _image.transform.DOLocalMove(targetPos, _beginTransform.position.duration, true).SetEase(_beginTransform.position.ease);
-        _image.transform.DOLocalRotate(targetRot, _beginTransform.rotation.duration, RotateMode.FastBeyond360).SetEase(_beginTransform.rotation.ease);
-        _image.transform.DOScale(targetScale, _beginTransform.scale.duration).SetEase(_beginTransform.scale.ease);
+        _panelImage.transform.DOLocalMove(targetPos, _beginTransform.position.duration, true).SetEase(_beginTransform.position.ease);
+        _panelImage.transform.DOLocalRotate(targetRot, _beginTransform.rotation.duration, RotateMode.FastBeyond360).SetEase(_beginTransform.rotation.ease);
+        _panelImage.transform.DOScale(targetScale, _beginTransform.scale.duration).SetEase(_beginTransform.scale.ease);
     }
     
     public void DoEndAnimation()
@@ -69,9 +75,9 @@ public class Webcam : MonoBehaviour
         Vector3 targetScale = _endTransform.scale.vector;
         
         // Animation
-        _image.transform.DOLocalMove(targetPos, _endTransform.position.duration, true).SetEase(_endTransform.position.ease);
-        _image.transform.DOLocalRotate(targetRot, _endTransform.rotation.duration, RotateMode.FastBeyond360).SetEase(_endTransform.rotation.ease);
-        _image.transform.DOScale(targetScale, _endTransform.scale.duration).SetEase(_endTransform.scale.ease);
+        _panelImage.transform.DOLocalMove(targetPos, _endTransform.position.duration, true).SetEase(_endTransform.position.ease);
+        _panelImage.transform.DOLocalRotate(targetRot, _endTransform.rotation.duration, RotateMode.FastBeyond360).SetEase(_endTransform.rotation.ease);
+        _panelImage.transform.DOScale(targetScale, _endTransform.scale.duration).SetEase(_endTransform.scale.ease);
     }
 
     public void PauseWebcam()
@@ -82,6 +88,11 @@ public class Webcam : MonoBehaviour
     public void StopWebcam()
     {
         _wTexture.Stop();
+    }
+
+    public void PlayWebcam()
+    {
+        _wTexture.Play();
     }
     
     //== Private methods ====================================
@@ -150,6 +161,10 @@ public class Webcam : MonoBehaviour
     {
         _wTexture.Pause();
         DOTween.Kill(this);
+        
+        _panelImage.transform.localPosition = _defaultTransform.position.vector;
+        _panelImage.transform.localScale = _defaultTransform.scale.vector;
+        _panelImage.transform.localRotation = Quaternion.Euler(_defaultTransform.rotation.vector);
     }
 
     private void OnDestroy()
@@ -206,6 +221,30 @@ public class Webcam : MonoBehaviour
 
         _endTransform = new WebcamAnimationTransform(wpos, wrot, wsca);
     }
+    
+    [Button]
+    private void DefaultImageTransform()
+    {
+        Transform t = _image.transform;
+        
+        WebcamAnimationProperty wpos = new WebcamAnimationProperty(
+            _defaultTransform.position.ease,
+            _defaultTransform.position.duration,
+            t.localPosition);
+        
+        WebcamAnimationProperty wrot = new WebcamAnimationProperty(
+            _defaultTransform.rotation.ease,
+            _defaultTransform.rotation.duration,
+            t.localRotation.eulerAngles);
+        
+        WebcamAnimationProperty wsca = new WebcamAnimationProperty(
+            _defaultTransform.scale.ease,
+            _defaultTransform.scale.duration,
+            t.localScale);
+
+        _defaultTransform = new WebcamAnimationTransform(wpos, wrot, wsca);
+    }
+    
     #endregion
 #endif
 }

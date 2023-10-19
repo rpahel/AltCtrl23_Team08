@@ -16,3 +16,5 @@ MonoBehaviour:
   _firstAttribute: 2
   _secondAttribute: 7
   _audioClip: {fileID: 8300000, guid: 97cecad35e295294db54766f46936a33, type: 3}
+  _sfxType: {fileID: 8300000, guid: 47c42b9354c4fbf4daaeb95b9932ea6c, type: 3}
+  _sfxEffect: {fileID: 8300000, guid: d67049d28cef4824eb3b439a5c736337, type: 3}
