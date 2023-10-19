@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ScrollShop.AI;
 using ScrollShop.CustomDebug;
 using ScrollShop.Interfaces;
 using UnityEngine;
@@ -59,6 +60,9 @@ public class GameManager : MonoBehaviour, IDebug
     [SerializeField] private GameObject _webcamPanel;
     [SerializeField] private Webcam _webcam;
 
+    [Header("Set Up")]
+    [SerializeField] private AiManager _aiManager;
+
     private int _roundNum;
     private int _score;
 
@@ -103,7 +107,7 @@ public class GameManager : MonoBehaviour, IDebug
         for (int i = 0; i < _quests.Length; i++)
         {
             _questBuffer.Add(_quests[i]);
-        }
+        } 
     }
 
     private void Start()
@@ -257,6 +261,7 @@ public class GameManager : MonoBehaviour, IDebug
         yield return new WaitForSeconds(_timeToTakePose);
         
         _webcam.PauseWebcam();
+        _webcam.TakeScreenshot();
         _webcam.DoEndAnimation();
 
         RoundEnd(poseId);
@@ -365,7 +370,6 @@ public class GameManager : MonoBehaviour, IDebug
         yield return new WaitForSeconds(3f);
                 
         InitializeRound();
-        
     }
 
     #endregion

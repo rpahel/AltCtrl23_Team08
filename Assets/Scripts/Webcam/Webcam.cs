@@ -94,6 +94,11 @@ public class Webcam : MonoBehaviour
     {
         _wTexture.Play();
     }
+
+    public void TakeScreenshot()
+    {
+        _gDriveManager.TakeScreenShot();
+    }
     
     //== Private methods ====================================
     private void Awake()
@@ -172,7 +177,7 @@ public class Webcam : MonoBehaviour
         _wTexture.Stop();
         DOTween.Kill(this);
     }
-    
+
 #if UNITY_EDITOR
     #region Editor
     //== Editor only methods ================================
