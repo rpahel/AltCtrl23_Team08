@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using ScrollShop.AI;
 using ScrollShop.CustomDebug;
-using ScrollShop.Enums;
 using ScrollShop.Interfaces;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -124,8 +123,8 @@ public class GameManager : MonoBehaviour, IDebug
         _playerPoses.Add(0, default);
         _playerPoses.Add(1, default);
 
-        _playerPoses[0] = _defaultTypePose;
-        _playerPoses[1] = _defaultEffectPose;
+        _playerPoses[1] = _defaultTypePose;
+        _playerPoses[0] = _defaultEffectPose;
     }
 
     private void Start()
@@ -274,7 +273,7 @@ public class GameManager : MonoBehaviour, IDebug
         
         ServiceLocator.Get().ChangeMusic(_musicPose);
         
-        _aiManager.GetBridge.SubscribeToPoseChangedEvent(UpdatePose);
+        _aiManager.GetBridge.StartRecordingPoses();
         
         _webcamPanel.SetActive(true);
         _webcam.PlayWebcam();
@@ -282,14 +281,19 @@ public class GameManager : MonoBehaviour, IDebug
 
         yield return new WaitForSeconds(_timeToTakePose);
         
-        _aiManager.GetBridge.UnsubscribeFromPoseChangedEvent(UpdatePose);
+        _aiManager.GetBridge.StopRecordingPoses();
 
-        Debug.Log(_playerPoses[0].GetAttribute +", " + _playerPoses[1].GetAttribute);
+        _playerPoses[0] = _aiManager.GetBridge.GetCurrentPose(0);
+        _playerPoses[1] = _aiManager.GetBridge.GetCurrentPose(1);
+
+        Debug.Log(_playerPoses[1].GetAttribute +", " + _playerPoses[0].GetAttribute);
+        
+        //_aiManager.GetBridge.ClearWeights();
         
         for (int i = 0; i < _spells.Length; i++)
         {
-            if (_spells[i].FirstAttribute == _playerPoses[0].GetAttribute
-                && _spells[i].SecondAttribute == _playerPoses[1].GetAttribute)
+            if (_spells[i].FirstAttribute == _playerPoses[1].GetAttribute
+                && _spells[i].SecondAttribute == _playerPoses[0].GetAttribute)
             {
                 _currentSpell = _spells[i];
             }
@@ -301,10 +305,12 @@ public class GameManager : MonoBehaviour, IDebug
         RoundEnd(poseId);
         ServiceLocator.Get().ChangeMusic(_musicInGame, true);
 
-        _spellNameImage.sprite = _currentSpell.NameSprite;
+        if (_currentSpell != null)
+        {
+            _spellNameImage.sprite = _currentSpell.NameSprite;   
+            ServiceLocator.Get().PlaySound(_currentSpell.AudioClip);
+        }
         _spellNameImage.gameObject.SetActive(true);
-        
-        ServiceLocator.Get().PlaySound(_currentSpell.AudioClip);
 
         yield return new WaitForSeconds(_timeBeforePhotoHiding);
         

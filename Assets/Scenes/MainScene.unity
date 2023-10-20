@@ -786,6 +786,10 @@ PrefabInstance:
       propertyPath: _gDriveManager
       value: 
       objectReference: {fileID: 155614438}
+    - target: {fileID: 7690246165767850019, guid: cdcfdadeeb2fc8140b9267cf86fdcdb1, type: 3}
+      propertyPath: _webcamNameOverride
+      value: Full HD webcam
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
