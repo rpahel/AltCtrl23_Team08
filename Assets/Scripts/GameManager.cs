@@ -172,6 +172,9 @@ public class GameManager : MonoBehaviour, IDebug
     {
         _roundNum++;
         _crystalBallTimer = 0f;
+        
+        _playerPoses[1] = _defaultTypePose;
+        _playerPoses[0] = _defaultEffectPose;
 
         if (_roundNum >= _roundCount + 1 || _questBuffer.Count == 0)
         {
