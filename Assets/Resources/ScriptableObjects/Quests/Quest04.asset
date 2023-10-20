@@ -11,11 +11,11 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abd47cdca8f3d42499b2b3267cdb42c4, type: 3}
   m_Name: Quest04
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   _isRandomNPC: 0
   _character: {fileID: 0}
   _requestSentence: My son got his head stuck in his chamber pot, again. Could you
-    help me unstuck this dumb ?
+    help me unstuck this dumbass ?
   _maleQuestSound: {fileID: 8300000, guid: 84d9dc526096afb49a115fb30a058cda, type: 3}
   _femaleQuestSound: {fileID: 8300000, guid: 0a0fed76d04493340bc34e12dcd41dba, type: 3}
   _badSentence: I don't see how it can help him, but at least it'll teach him a lesson.
