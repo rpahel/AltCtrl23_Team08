@@ -176,6 +176,7 @@ public class GameManager : MonoBehaviour, IDebug
         
         _playerPoses[1] = _defaultTypePose;
         _playerPoses[0] = _defaultEffectPose;
+        _currentSpell = null;
 
         if (_roundNum >= _roundCount + 1 || _questBuffer.Count == 0)
         {
@@ -290,8 +291,11 @@ public class GameManager : MonoBehaviour, IDebug
         _playerPoses[0] = _aiManager.GetBridge.GetCurrentPose(0);
         _playerPoses[1] = _aiManager.GetBridge.GetCurrentPose(1);
 
-        Debug.Log(_playerPoses[1].GetAttribute +", " + _playerPoses[0].GetAttribute);
-        
+        if (DebugConsole.Instance != null)
+        {
+            DebugConsole.Instance.Print(_playerPoses[1].GetAttribute +", " + _playerPoses[0].GetAttribute);
+        }
+
         //_aiManager.GetBridge.ClearWeights();
         
         for (int i = 0; i < _spells.Length; i++)
