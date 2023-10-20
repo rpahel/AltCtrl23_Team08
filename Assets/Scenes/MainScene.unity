@@ -638,7 +638,7 @@ PrefabInstance:
       objectReference: {fileID: 1903809681}
     - target: {fileID: 7607571666723518879, guid: e97176a17985eb64db8351087d2c8980, type: 3}
       propertyPath: _timeToTakePose
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7607571666723518879, guid: e97176a17985eb64db8351087d2c8980, type: 3}
       propertyPath: _characterBodyImage
@@ -652,6 +652,10 @@ PrefabInstance:
       propertyPath: _characterHeadImage
       value: 
       objectReference: {fileID: 5741779474234376154}
+    - target: {fileID: 7607571666723518879, guid: e97176a17985eb64db8351087d2c8980, type: 3}
+      propertyPath: _timeBeforeTakingPose
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
