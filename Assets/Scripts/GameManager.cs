@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour, IDebug
     [SerializeField] private int _roundCount = 8;
     [SerializeField] private float _sensiCrsytalBall = 10f;
     [SerializeField] private float _timeToChargeEnergy = 3f;
+    [SerializeField] private float _timeBeforeTakingPose = 1f;
     [SerializeField] private float _timeToTakePose = 7f;
     [SerializeField] private float _timeBeforePhotoHiding = 4f;
     [SerializeField] private float _timeBeforeNextRound = 10f;
@@ -276,6 +277,8 @@ public class GameManager : MonoBehaviour, IDebug
         
         ServiceLocator.Get().ChangeMusic(_musicPose);
         
+        yield return new WaitForSeconds(_timeBeforeTakingPose);
+        
         _aiManager.GetBridge.StartRecordingPoses();
         
         _webcamPanel.SetActive(true);
@@ -283,7 +286,7 @@ public class GameManager : MonoBehaviour, IDebug
         _webcam.DoBeginAnimation();
 
         yield return new WaitForSeconds(_timeToTakePose);
-        
+
         _aiManager.GetBridge.StopRecordingPoses();
 
         _playerPoses[0] = _aiManager.GetBridge.GetPoseByWeight(0);
