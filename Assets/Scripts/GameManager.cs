@@ -283,12 +283,12 @@ public class GameManager : MonoBehaviour, IDebug
         
         _aiManager.GetBridge.StopRecordingPoses();
 
-        _playerPoses[0] = _aiManager.GetBridge.GetCurrentPose(0);
-        _playerPoses[1] = _aiManager.GetBridge.GetCurrentPose(1);
+        _playerPoses[0] = _aiManager.GetBridge.GetPoseByWeight(0);
+        _playerPoses[1] = _aiManager.GetBridge.GetPoseByWeight(1);
 
         Debug.Log(_playerPoses[1].GetAttribute +", " + _playerPoses[0].GetAttribute);
         
-        //_aiManager.GetBridge.ClearWeights();
+        _aiManager.GetBridge.ClearWeights();
         
         for (int i = 0; i < _spells.Length; i++)
         {
