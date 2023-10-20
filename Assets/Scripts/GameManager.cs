@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using ScrollShop.AI;
 using ScrollShop.CustomDebug;
+using ScrollShop.Enums;
 using ScrollShop.Interfaces;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using TMPro;
 using UnityEngine.UI;
+using Pose = ScrollShop.Structs.Pose;
 
 public class GameManager : MonoBehaviour, IDebug
 {
@@ -17,6 +19,7 @@ public class GameManager : MonoBehaviour, IDebug
     [SerializeField] private float _sensiCrsytalBall = 10f;
     [SerializeField] private float _timeToChargeEnergy = 3f;
     [SerializeField] private float _timeToTakePose = 7f;
+    [SerializeField] private float _timeBeforePhotoHiding = 4f;
     [SerializeField] private float _timeBeforeNextRound = 10f;
 
     [Header("Score Values")]
@@ -59,9 +62,14 @@ public class GameManager : MonoBehaviour, IDebug
     [SerializeField] private TextMeshProUGUI _scoreText;
     [SerializeField] private GameObject _webcamPanel;
     [SerializeField] private Webcam _webcam;
+    [SerializeField] private Image _spellNameImage;
+    
 
     [Header("Set Up")]
     [SerializeField] private AiManager _aiManager;
+    [SerializeField] private Spell[] _spells;
+    [SerializeField] private Pose _defaultTypePose;
+    [SerializeField] private Pose _defaultEffectPose;
 
     private int _roundNum;
     private int _score;
@@ -79,6 +87,10 @@ public class GameManager : MonoBehaviour, IDebug
     private float _crystalBallTimer;
 
     private bool _gameEnded;
+
+    private readonly Dictionary<int, ScrollShop.Structs.Pose> _playerPoses = new();
+
+    private Spell _currentSpell;
 
     #endregion
 
@@ -108,6 +120,12 @@ public class GameManager : MonoBehaviour, IDebug
         {
             _questBuffer.Add(_quests[i]);
         } 
+        
+        _playerPoses.Add(0, default);
+        _playerPoses.Add(1, default);
+
+        _playerPoses[0] = _defaultTypePose;
+        _playerPoses[1] = _defaultEffectPose;
     }
 
     private void Start()
@@ -144,6 +162,7 @@ public class GameManager : MonoBehaviour, IDebug
     private void OnDestroy()
     {
         UnsubscribeFromDebugConsole();
+        _aiManager.GetBridge.UnsubscribeFromPoseChangedEvent(UpdatePose);
     }
 
     #endregion
@@ -172,6 +191,7 @@ public class GameManager : MonoBehaviour, IDebug
         _npc.SetActive(true);
         _dialogueZone.SetActive(true);
         _webcamPanel.SetActive(false);
+        _spellNameImage.gameObject.SetActive(false);
 
         _currentQuest = GenerateRequest();
         _currentCharacter = CreateRandomCharacter();
@@ -254,18 +274,41 @@ public class GameManager : MonoBehaviour, IDebug
         
         ServiceLocator.Get().ChangeMusic(_musicPose);
         
+        _aiManager.GetBridge.SubscribeToPoseChangedEvent(UpdatePose);
+        
         _webcamPanel.SetActive(true);
         _webcam.PlayWebcam();
         _webcam.DoBeginAnimation();
 
         yield return new WaitForSeconds(_timeToTakePose);
         
+        _aiManager.GetBridge.UnsubscribeFromPoseChangedEvent(UpdatePose);
+
+        Debug.Log(_playerPoses[0].GetAttribute +", " + _playerPoses[1].GetAttribute);
+        
+        for (int i = 0; i < _spells.Length; i++)
+        {
+            if (_spells[i].FirstAttribute == _playerPoses[0].GetAttribute
+                && _spells[i].SecondAttribute == _playerPoses[1].GetAttribute)
+            {
+                _currentSpell = _spells[i];
+            }
+        }
+
         _webcam.PauseWebcam();
         _webcam.TakeScreenshot();
-        _webcam.DoEndAnimation();
 
         RoundEnd(poseId);
         ServiceLocator.Get().ChangeMusic(_musicInGame, true);
+
+        _spellNameImage.sprite = _currentSpell.NameSprite;
+        _spellNameImage.gameObject.SetActive(true);
+        
+        ServiceLocator.Get().PlaySound(_currentSpell.AudioClip);
+
+        yield return new WaitForSeconds(_timeBeforePhotoHiding);
+        
+        _webcam.DoEndAnimation();
 
         yield return new WaitForSeconds(_timeBeforeNextRound);
 
@@ -370,6 +413,12 @@ public class GameManager : MonoBehaviour, IDebug
         yield return new WaitForSeconds(3f);
                 
         InitializeRound();
+    }
+
+    private void UpdatePose(int index, ScrollShop.Structs.Pose pose)
+    {
+        Debug.Log(index + ", " + pose);
+        _playerPoses[index] = pose;
     }
 
     #endregion

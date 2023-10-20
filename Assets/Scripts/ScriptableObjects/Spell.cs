@@ -27,6 +27,7 @@ public class Spell : ScriptableObject
     public ATTRIBUTE FirstAttribute => _firstAttribute;
     public ATTRIBUTE SecondAttribute => _secondAttribute;
     public AudioClip AudioClip => _audioClip;
+    public Sprite NameSprite => _nameSprite;
 
     #endregion
 }

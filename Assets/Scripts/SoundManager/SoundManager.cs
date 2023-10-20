@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Audio;
 
 namespace ScrollShop.Interfaces
 {
@@ -20,6 +21,10 @@ namespace ScrollShop.Interfaces
 
         public AudioClip Music { get; set; }
 
+        public AudioMixerGroup MusicMixerGroupe { get; set; }
+
+        public AudioMixerGroup SfxMixerGroupe { get; set; }
+
         #endregion
 
         #region Public Methods
@@ -31,6 +36,7 @@ namespace ScrollShop.Interfaces
             if (MusicAudioSource == null)
             {
                 MusicAudioSource = gameObject.AddComponent<AudioSource>();
+                MusicAudioSource.outputAudioMixerGroup = MusicMixerGroupe;
                 MusicAudioSource.loop = true;
             }
 
@@ -56,7 +62,8 @@ namespace ScrollShop.Interfaces
             
             if (SfxAudioSource == null)
             {
-                SfxAudioSource = gameObject.AddComponent<AudioSource>();   
+                SfxAudioSource = gameObject.AddComponent<AudioSource>();
+                SfxAudioSource.outputAudioMixerGroup = SfxMixerGroupe;
                 SfxAudioSource.loop = true;
             }
             

@@ -67,9 +67,9 @@ namespace ScrollShop.AI
                 string confidence = e.Data.Split("$")[2];
 
                 int playerIndex = -1;
-                if (playerType.Equals("Spell"))
+                if (playerType.Equals("spell"))
                     playerIndex = 0;
-                else if (playerType.Equals("Type"))
+                else if (playerType.Equals("type"))
                     playerIndex = 1;
 
                 _bridgeSO.SetPose(playerIndex, poseName);
