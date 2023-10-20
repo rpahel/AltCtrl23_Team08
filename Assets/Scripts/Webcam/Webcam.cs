@@ -160,6 +160,7 @@ public class Webcam : MonoBehaviour
             yield return new WaitForSeconds(_endTransform.GetMaxDuration());
         }
         #endif
+        yield break;
     }
 
     private void OnDisable()
