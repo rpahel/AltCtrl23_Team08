@@ -27,6 +27,7 @@ namespace ScrollShop.AI
         private Dictionary<(int, Pose), int> _weights = new Dictionary<(int, Pose), int>(300);
         private Pose[] _previousPoses; // Does NOT remember ALL previous poses, but the last previous pose of each player index.
         private Pose[] _currentPoses; // Stock current pose per player index
+        private bool CanFillDictionary = false;
         
         //== Interface implementations =============
         public void SubscribeToDebugConsole()
@@ -127,16 +128,15 @@ namespace ScrollShop.AI
             _previousPoses[index] = _currentPoses[index];
             _currentPoses[index] = matchPose;
 
-            if (!_weights.ContainsKey((index, matchPose)))
+            if (CanFillDictionary)
             {
-                //if (_weights.Count >= 295) TODO
-                //{
-                //    _weights.Remove();
-                //}
-                _weights.Add((index, matchPose), 0);
+                if (!_weights.ContainsKey((index, matchPose)))
+                {
+                    _weights.Add((index, matchPose), 0);
+                }
+                else
+                    _weights[(index, matchPose)]++;
             }
-            else
-                _weights[(index, matchPose)]++;
             
             OnPoseChanged?.Invoke(index, matchPose);
         }
@@ -154,6 +154,16 @@ namespace ScrollShop.AI
                 DebugConsole.Instance.Print($"Bridge : Pose with most weight for player {playerIndex} is " + heaviestPose.GetName);
 
             return heaviestPose;
+        }
+
+        public void StartRecordingPoses()
+        {
+            CanFillDictionary = true;
+        }
+
+        public void StopRecordingPoses()
+        {
+            CanFillDictionary = false;
         }
 
         public void ClearWeights()
