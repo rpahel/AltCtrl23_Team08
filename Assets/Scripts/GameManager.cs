@@ -268,8 +268,6 @@ public class GameManager : MonoBehaviour, IDebug
 
     private IEnumerator PlayRound()
     {
-        var poseId = 0;
-
         while (_crystalBallTimer < _timeToChargeEnergy)
         {
             yield return new WaitForEndOfFrame();
@@ -314,10 +312,13 @@ public class GameManager : MonoBehaviour, IDebug
         {
             _spellNameImage.sprite = _currentSpell.NameSprite;   
             ServiceLocator.Get().PlaySound(_currentSpell.AudioClip);
+            RoundEnd(_currentSpell.Id);
+        }
+        else
+        {
+            RoundEnd(0); 
         }
         _spellNameImage.gameObject.SetActive(true);
-        
-        RoundEnd(poseId);
 
         yield return new WaitForSeconds(_timeBeforePhotoHiding);
         
@@ -328,7 +329,7 @@ public class GameManager : MonoBehaviour, IDebug
         InitializeRound();
     }
 
-    private void RoundEnd(int id)
+    private void RoundEnd(uint id)
     {
         for (int i = 0; i < _currentQuest.MediumSpells.Length; i++)
         {
