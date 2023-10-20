@@ -1165,6 +1165,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7763856064175651036, guid: 1444be9addb396649827e2afa4e8fd83, type: 3}
+      propertyPath: _webcamNameOverride
+      value: Full HD webcam
+      objectReference: {fileID: 0}
     - target: {fileID: 7919405028334693228, guid: 1444be9addb396649827e2afa4e8fd83, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.5
