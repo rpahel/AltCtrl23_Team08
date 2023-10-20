@@ -307,8 +307,7 @@ public class GameManager : MonoBehaviour, IDebug
 
         _webcam.PauseWebcam();
         _webcam.TakeScreenshot();
-
-        RoundEnd(poseId);
+        
         ServiceLocator.Get().ChangeMusic(_musicInGame, true);
 
         if (_currentSpell != null)
@@ -317,6 +316,8 @@ public class GameManager : MonoBehaviour, IDebug
             ServiceLocator.Get().PlaySound(_currentSpell.AudioClip);
         }
         _spellNameImage.gameObject.SetActive(true);
+        
+        RoundEnd(poseId);
 
         yield return new WaitForSeconds(_timeBeforePhotoHiding);
         
