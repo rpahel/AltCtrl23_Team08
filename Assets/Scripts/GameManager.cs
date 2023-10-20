@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour, IDebug
         
         ServiceLocator.Get().ChangeMusic(_musicInGame, true);
 
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
@@ -277,24 +277,24 @@ public class GameManager : MonoBehaviour, IDebug
         
         ServiceLocator.Get().ChangeMusic(_musicPose);
         
-        yield return new WaitForSeconds(_timeBeforeTakingPose);
-        
-        _aiManager.GetBridge.StartRecordingPoses();
-        
         _webcamPanel.SetActive(true);
         _webcam.PlayWebcam();
         _webcam.DoBeginAnimation();
+        
+        yield return new WaitForSeconds(_timeBeforeTakingPose);
+
+        //_aiManager.GetBridge.StartRecordingPoses();
 
         yield return new WaitForSeconds(_timeToTakePose);
 
-        _aiManager.GetBridge.StopRecordingPoses();
+        //_aiManager.GetBridge.StopRecordingPoses();
 
-        _playerPoses[0] = _aiManager.GetBridge.GetPoseByWeight(0);
-        _playerPoses[1] = _aiManager.GetBridge.GetPoseByWeight(1);
+        _playerPoses[0] = _aiManager.GetBridge.GetCurrentPose(0);
+        _playerPoses[1] = _aiManager.GetBridge.GetCurrentPose(1);
 
         Debug.Log(_playerPoses[1].GetAttribute +", " + _playerPoses[0].GetAttribute);
         
-        _aiManager.GetBridge.ClearWeights();
+        //_aiManager.GetBridge.ClearWeights();
         
         for (int i = 0; i < _spells.Length; i++)
         {
