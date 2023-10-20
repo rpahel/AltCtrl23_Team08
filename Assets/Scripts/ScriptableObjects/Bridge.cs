@@ -148,12 +148,36 @@ namespace ScrollShop.AI
         
         public Pose GetPoseByWeight(int playerIndex)
         {
-            Pose heaviestPose = _weights.Where(i => i.Key.Item1 == playerIndex).Max().Key.Item2;
+            List<(Pose, int)> PoseWeight = new List<(Pose, int)>();
+            
+            foreach (var element in _weights)
+            {
+                if (element.Key.Item1 != playerIndex)
+                    continue;
+                
+                PoseWeight.Add((element.Key.Item2, element.Value));
+            }
+
+            if (PoseWeight.Count <= 0)
+            {
+                if(DebugConsole.Instance)
+                    DebugConsole.Instance.Print("Bridge : GetPoseByWeight() -> PoseWeight is empty !");
+
+                throw new Exception("Bridge : GetPoseByWeight() -> PoseWeight is empty !");
+            }
+            
+            (Pose, int) previous = PoseWeight[0];
+
+            foreach (var element in PoseWeight)
+            {
+                if (element.Item2 > previous.Item2)
+                    previous = element;
+            }
             
             if(DebugConsole.Instance)
-                DebugConsole.Instance.Print($"Bridge : Pose with most weight for player {playerIndex} is " + heaviestPose.GetName);
+                DebugConsole.Instance.Print($"Bridge : Pose with most weight for player {playerIndex} is " + previous.Item1.GetName);
 
-            return heaviestPose;
+            return previous.Item1;
         }
 
         public void StartRecordingPoses()
