@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using ScrollShop.AI;
-using ScrollShop.ScriptableObjects;
 using ScrollShop.Structs;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -13,9 +12,6 @@ public class ParticlesManager : MonoBehaviour
     
     [SerializeField]
     private Transform _particleSourcePlayer0, _particleSourcePlayer1;
-
-    [SerializeField]
-    private PosesSO _posesSO;
     
     [SerializeField]
     private PoseParticle[] _poseParticles;
@@ -24,49 +20,48 @@ public class ParticlesManager : MonoBehaviour
     private List<GameObject> _sourceListPlayer1 = new List<GameObject>(4);
     private List<GameObject> _particlesTrash = new List<GameObject>(4);
 
-    private void Start()
+    private void OnEnable()
     {
+        ClearParticleSystem();
+        
         if(_bridge)
             _bridge.SubscribeToPoseChangedEvent(PoseChanged);
         
-        InvokeRepeating(nameof(ClearParticleSystems), 1f, 1f);
+        InvokeRepeating(nameof(ClearTrashHandler), 1f, 1f);
     }
 
     private void OnDisable()
     {
+        ClearParticleSystem();
+        
         if(_bridge)
             _bridge.UnsubscribeFromPoseChangedEvent(PoseChanged);
-    }
-    
-    private void OnDestroy()
-    {
-        if(_bridge)
-            _bridge.UnsubscribeFromPoseChangedEvent(PoseChanged);
+        
+        CancelInvoke();
     }
 
     private void PoseChanged(int index, Pose pose)
     {
+        if (!gameObject.activeSelf)
+            return;
+        
         GameObject go = Instantiate(GetParticleFromPose(pose), index == 0 ? _particleSourcePlayer0 : _particleSourcePlayer1);
         
         if (index == 0)
         {
-            for (int i = _sourceListPlayer0.Count - 1; i >= 0; i--)
-            {
-                _sourceListPlayer0[i].GetComponent<VisualEffect>().Stop();
-                _particlesTrash.Add(_sourceListPlayer0[i]);
-                _sourceListPlayer0.RemoveAt(i);
-            }
+            foreach (var element in _sourceListPlayer0)
+                element.GetComponent<VisualEffect>().Stop();
             
+            EmptyListToTrash(_sourceListPlayer0);
+
             _sourceListPlayer0.Add(go);
         }
         else
         {
-            for (int i = _sourceListPlayer1.Count - 1; i >= 0; i--)
-            {
-                _sourceListPlayer1[i].GetComponent<VisualEffect>().Stop();
-                _particlesTrash.Add(_sourceListPlayer1[i]);
-                _sourceListPlayer1.RemoveAt(i);
-            }
+            foreach (var element in _sourceListPlayer1)
+                element.GetComponent<VisualEffect>().Stop();
+            
+            EmptyListToTrash(_sourceListPlayer1);
             
             _sourceListPlayer1.Add(go);
         }
@@ -83,16 +78,34 @@ public class ParticlesManager : MonoBehaviour
         throw new KeyNotFoundException();
     }
 
-    private void ClearParticleSystems()
+    private void ClearParticleSystem()
+    {
+        EmptyListToTrash(_sourceListPlayer0);
+        EmptyListToTrash(_sourceListPlayer1);
+        ClearTrash(forceClear: true);
+    }
+    
+    private void ClearTrash(bool forceClear = false)
     {
         for (int i = _particlesTrash.Count - 1; i >= 0; i--)
         {
-            if (_particlesTrash[i].GetComponent<VisualEffect>().aliveParticleCount > 0)
+            if (!forceClear && _particlesTrash[i].GetComponent<VisualEffect>().aliveParticleCount > 0)
                 continue;
             
             GameObject go = _particlesTrash[i];
             _particlesTrash.Remove(go);
             Destroy(go);
+        }
+    }
+
+    private void ClearTrashHandler() => ClearTrash();
+
+    private void EmptyListToTrash(List<GameObject> list)
+    {
+        for (int i = list.Count - 1; i >= 0; i--)
+        {
+            _particlesTrash.Add(list[i]);
+            list.RemoveAt(i);
         }
     }
 }

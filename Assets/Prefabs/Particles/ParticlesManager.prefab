@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7203200256268263768
 Transform:
   m_ObjectHideFlags: 0
@@ -49,7 +49,6 @@ MonoBehaviour:
   _bridge: {fileID: 11400000, guid: 6233bb34ebbb2a648ac43b693f887485, type: 2}
   _particleSourcePlayer0: {fileID: 4026615703613595992}
   _particleSourcePlayer1: {fileID: 8692196145514160954}
-  _posesSO: {fileID: 11400000, guid: 31f64886c40b06c4dbe65701ff1a6a90, type: 2}
   _poseParticles:
   - _poseId: 0
     _particlesPrefab: {fileID: 80679654956046284, guid: 74ca3cad14d825c46a749e916a2fdf07, type: 3}

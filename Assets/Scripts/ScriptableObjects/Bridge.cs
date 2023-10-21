@@ -134,11 +134,23 @@ namespace ScrollShop.AI
 
         public void SubscribeToPoseChangedEvent(Action<int, Pose> method)
         {
+            if (OnPoseChanged?.GetInvocationList().Contains(method) == true)
+            {
+                Print($"Bridge: OnPoseChanged already contains {method.Target}\'s method {method.Method.Name}");
+                return;
+            }
+            
             OnPoseChanged += method;
         }
         
         public void UnsubscribeFromPoseChangedEvent(Action<int, Pose> method)
         {
+            if (OnPoseChanged?.GetInvocationList().Contains(method) != true)
+            {
+                Print($"Bridge: OnPoseChanged does not contain {method.Target}\'s method {method.Method.Name}");
+                return;
+            }
+            
             OnPoseChanged -= method;
         }
         

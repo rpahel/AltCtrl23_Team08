@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour, IDebug
         
         ServiceLocator.Get().ChangeMusic(_musicInGame, true);
 
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void Update()
