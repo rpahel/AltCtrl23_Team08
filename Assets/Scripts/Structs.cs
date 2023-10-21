@@ -22,6 +22,16 @@ namespace ScrollShop.Structs
     }
 
     [Serializable]
+    public struct PoseParticle
+    {
+        [SerializeField] private int _poseId;
+        [SerializeField] private GameObject _particlesPrefab;
+
+        public int GetPoseId => _poseId;
+        public GameObject GetParticles => _particlesPrefab;
+    }
+
+    [Serializable]
     public struct WebcamAnimationProperty
     {
         public Ease ease;

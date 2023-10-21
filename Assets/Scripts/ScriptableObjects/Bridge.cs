@@ -19,15 +19,11 @@ namespace ScrollShop.AI
         private int _numberOfPlayers = 2;
         [SerializeField, BoxGroup("Poses")]
         private PosesSO posesSo;
-        [SerializeField, BoxGroup("Debug")]
-        private bool _ignoreAi;
         
         private event Action<int, Pose> OnPoseChanged; //Action<index, Pose>
         private Dictionary<string, Pose> _posesDatabase;
-        private Dictionary<(int, Pose), int> _weights = new Dictionary<(int, Pose), int>(300);
         private Pose[] _previousPoses; // Does NOT remember ALL previous poses, but the last previous pose of each player index.
         private Pose[] _currentPoses; // Stock current pose per player index
-        private bool CanFillDictionary = false;
         
         //== Interface implementations =============
         public void SubscribeToDebugConsole()
@@ -35,7 +31,6 @@ namespace ScrollShop.AI
             if (DebugConsole.Instance == null)
                 return;
             
-            DebugConsole.Instance.AddToMethodDictionary(BridgeToggleIgnoreAI);
             DebugConsole.Instance.AddToMethodDictionary(BridgeSetPose);
         }
     
@@ -44,7 +39,6 @@ namespace ScrollShop.AI
             if (DebugConsole.Instance == null)
                 return;
             
-            DebugConsole.Instance.RemoveFromMethodDictionary(BridgeToggleIgnoreAI);
             DebugConsole.Instance.RemoveFromMethodDictionary(BridgeSetPose);
         }
         
@@ -127,16 +121,8 @@ namespace ScrollShop.AI
             // Every check has passed, lets gooo
             _previousPoses[index] = _currentPoses[index];
             _currentPoses[index] = matchPose;
-
-            if (CanFillDictionary)
-            {
-                if (!_weights.ContainsKey((index, matchPose)))
-                {
-                    _weights.Add((index, matchPose), 0);
-                }
-                else
-                    _weights[(index, matchPose)]++;
-            }
+            
+            Print($"Bridge: SetPose -> player {index} is now doing the {matchPose.GetName} pose.");
             
             OnPoseChanged?.Invoke(index, matchPose);
         }
@@ -144,72 +130,6 @@ namespace ScrollShop.AI
         public Pose GetCurrentPose(int playerIndex)
         {
             return _currentPoses[playerIndex];
-        }
-        
-        public Pose GetPoseByWeight(int playerIndex)
-        {
-            List<(Pose, int)> PoseWeight = new List<(Pose, int)>();
-            
-            foreach (var element in _weights)
-            {
-                if (element.Key.Item1 != playerIndex)
-                    continue;
-                
-                PoseWeight.Add((element.Key.Item2, element.Value));
-            }
-
-            if (PoseWeight.Count <= 0)
-            {
-                if(DebugConsole.Instance)
-                    DebugConsole.Instance.Print("Bridge : GetPoseByWeight() -> PoseWeight is empty !");
-
-                throw new Exception("Bridge : GetPoseByWeight() -> PoseWeight is empty !");
-            }
-            
-            (Pose, int) previous = PoseWeight[0];
-
-            foreach (var element in PoseWeight)
-            {
-                if (element.Item2 > previous.Item2)
-                    previous = element;
-            }
-            
-            if(DebugConsole.Instance)
-                DebugConsole.Instance.Print($"Bridge : Pose with most weight for player {playerIndex} is " + previous.Item1.GetName);
-
-            return previous.Item1;
-        }
-
-        public void StartRecordingPoses()
-        {
-            CanFillDictionary = true;
-        }
-
-        public void StopRecordingPoses()
-        {
-            CanFillDictionary = false;
-        }
-
-        public void ClearWeights()
-        {
-            _weights.Clear();
-        }
-        
-        public void PrintRecognisesPoses()
-        {
-            if (!DebugConsole.Instance)
-                return;
-
-            if (_weights.Count <= 0)
-            {
-                DebugConsole.Instance.Print("Bridge : _weights Dictionary is empty.");
-                return;
-            }
-
-            DebugConsole.Instance.Print($"Bridge : Here are all recognised poses ({_weights.Count}) :");
-
-            foreach (var element in _weights)
-                DebugConsole.Instance.Print($"Bridge : Player = {element.Key.Item1}, Pose = {element.Key.Item2}, Weight = {element.Value}");
         }
 
         public void SubscribeToPoseChangedEvent(Action<int, Pose> method)
@@ -223,6 +143,7 @@ namespace ScrollShop.AI
         }
         
         //== Private methods =======================
+        
         private void FillDatabase()
         {
             _posesDatabase?.Clear();
@@ -232,27 +153,24 @@ namespace ScrollShop.AI
         }
     
         //== Debug methods =========================
-        private void BridgeToggleIgnoreAI(string s)
-        {
-            string[] arguments = s.Split(' ');
-            int secondArgument = -1;
-            
-            if (arguments.Length > 1 && arguments[1] != null)
-                int.TryParse(arguments[1], out secondArgument);
-    
-            _ignoreAi = secondArgument switch // what the fuck
-            {
-                0 => false,
-                1 => true,
-                _ => !_ignoreAi
-            };
-    
-            Print("Bridge: _ignoreAI is now set to " + _ignoreAi + '.');
-        }
         
         private void BridgeSetPose(string s)
         {
-            Print("Bridge: BridgeSetPose() is not implemented.", LOGTYPE.ERROR);
+            string[] ss = s.Split(' ');
+
+            if (ss.Length != 3)
+            {
+                Print($"Bridge: BridgeSetPose() -> Invalid number of arguments.", LOGTYPE.ERROR);
+                return;
+            }
+            
+            if (!int.TryParse(ss[1], out int index))
+            {
+                Print($"Bridge: BridgeSetPose() -> {ss[1]} is not a valid player index.", LOGTYPE.ERROR);
+                return;
+            }
+            
+            SetPose(index, ss[2].ToLower());
         }
     
         private void Print(string message, LOGTYPE logtype = LOGTYPE.LOG)
