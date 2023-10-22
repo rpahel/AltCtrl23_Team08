@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &67635893 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1283200626776220928, guid: bc6fbd1f4fecd9c4aa982363b8df7c00, type: 3}
+  m_PrefabInstance: {fileID: 711133023}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &108887258 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3587673774038313437, guid: cdcfdadeeb2fc8140b9267cf86fdcdb1, type: 3}
@@ -361,6 +366,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParticlesManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1283200626776220928, guid: bc6fbd1f4fecd9c4aa982363b8df7c00, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7203200256268263768, guid: bc6fbd1f4fecd9c4aa982363b8df7c00, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -401,6 +410,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8014137842718372139, guid: bc6fbd1f4fecd9c4aa982363b8df7c00, type: 3}
+      propertyPath: _poseParticles.Array.data[0]._particlesPrefab
+      value: 
+      objectReference: {fileID: 80679654956046284, guid: 74ca3cad14d825c46a749e916a2fdf07, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -697,6 +710,10 @@ PrefabInstance:
       propertyPath: _timeToTakePose
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7607571666723518879, guid: e97176a17985eb64db8351087d2c8980, type: 3}
+      propertyPath: _particulesManager
+      value: 
+      objectReference: {fileID: 67635893}
     - target: {fileID: 7607571666723518879, guid: e97176a17985eb64db8351087d2c8980, type: 3}
       propertyPath: _characterBodyImage
       value: 

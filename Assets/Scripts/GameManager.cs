@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour, IDebug
     [SerializeField] private Spell[] _spells;
     [SerializeField] private Pose _defaultTypePose;
     [SerializeField] private Pose _defaultEffectPose;
+    [SerializeField] private GameObject _particulesManager;
 
     private int _roundNum;
     private int _score;
@@ -282,6 +283,8 @@ public class GameManager : MonoBehaviour, IDebug
         
         yield return new WaitForSeconds(_timeBeforeTakingPose);
 
+        _particulesManager.SetActive(true);
+
         //_aiManager.GetBridge.StartRecordingPoses();
 
         yield return new WaitForSeconds(_timeToTakePose);
@@ -325,7 +328,8 @@ public class GameManager : MonoBehaviour, IDebug
         _spellNameImage.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(_timeBeforePhotoHiding);
-        
+
+        _particulesManager.SetActive(false);
         _webcam.DoEndAnimation();
 
         yield return new WaitForSeconds(_timeBeforeNextRound);
