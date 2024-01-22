@@ -1,12 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using ScrollShop.CustomDebug;
 using ScrollShop.Enums;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityGoogleDrive;
-using UnityGoogleDrive.Data;
+using File = UnityGoogleDrive.Data.File;
 
 public class GoogleDriveManager : MonoBehaviour
 {
@@ -20,7 +20,7 @@ public class GoogleDriveManager : MonoBehaviour
     {
         RenderTexture mRt = new RenderTexture(
             _renderTexture.width, 
-            _renderTexture.height, 
+            _renderTexture.height,
             _renderTexture.depth, 
             RenderTextureFormat.ARGB32, 
             RenderTextureReadWrite.sRGB);
@@ -35,8 +35,12 @@ public class GoogleDriveManager : MonoBehaviour
         Rect regionToReadFrom = new Rect(0, 0, _renderTexture.width, _renderTexture.height);
         destinationTexture.ReadPixels(regionToReadFrom, 0, 0);
         destinationTexture.Apply();
-        
-        StartCoroutine(UploadImageCoroutine(destinationTexture));
+
+        // Local
+        LocalSave(destinationTexture);
+
+        // Internet
+        //StartCoroutine(UploadImageCoroutine(destinationTexture));
     }
 
     //==== Private Methods ====
@@ -62,5 +66,25 @@ public class GoogleDriveManager : MonoBehaviour
             DebugConsole.Instance.Print("GDrive : Image ID = " + request.ResponseData.Id);
             DebugConsole.Instance.Print("GDrive : Image Name = " + request.ResponseData.Name);
         }
+    }
+
+    public void LocalSave(Texture2D image)
+    {
+        DateTime Now = DateTime.Now;
+        string Path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyPictures) + "\\SGMSS";
+        string FileName =
+            Now.Year.ToString("0000") +
+            Now.Month.ToString("00") +
+            Now.Day.ToString("00") +
+            '_' +
+            Now.Hour.ToString("00") +
+            Now.Minute.ToString("00") +
+            Now.Second.ToString("00") +
+            ".jpg";
+
+        if(!Directory.Exists(Path))
+            Directory.CreateDirectory(Path);
+
+        System.IO.File.WriteAllBytes(Path + "\\" + FileName, image.EncodeToJPG());
     }
 }
