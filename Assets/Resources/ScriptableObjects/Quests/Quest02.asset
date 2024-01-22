@@ -11,31 +11,32 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abd47cdca8f3d42499b2b3267cdb42c4, type: 3}
   m_Name: Quest02
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   _isRandomNPC: 0
   _character: {fileID: 0}
-  _requestSentence: It's terrible! My employee made the mistake of mixing my wine
-    with water! It tastes terrible, what am I going to do?
+  _requestSentence: "C'est terrible ! Mon employ\xE9 a fait l'erreur de m\xE9langer
+    mon vin avec de l'eau ! Le go\xFBt est horrible, qu'est ce que je vais bien pouvoir
+    faire ?"
   _maleQuestSound: {fileID: 8300000, guid: 549dcc88fcfc0f04eaac8f44d285cf25, type: 3}
   _femaleQuestSound: {fileID: 8300000, guid: 078f292938ab0034ca93cb0be5bce654, type: 3}
-  _badSentence: Um... Okay, I'm going to believe that this will work, but I doubt
-    it.
+  _badSentence: Hum... Ok, je vais croire que cela fonctionnera mais j'en doute.
   _mediumSpells:
   - {fileID: 11400000, guid: b634fec21ffca0d4280e817747019101, type: 2}
   - {fileID: 11400000, guid: 2b2c546bdd44310428509ad52a9457c4, type: 2}
   - {fileID: 11400000, guid: 434988535a948f94e92d45a4fd7a1ec4, type: 2}
-  _mediumSentence: It'll probably improve the taste, that's something.
+  _mediumSentence: "Ca am\xE9liorera surement le go\xFBt, c'est d\xE9j\xE0 \xE7a."
   _goodSpells:
   - {fileID: 11400000, guid: 6b467d675122e7d4ab71122147e18550, type: 2}
   - {fileID: 11400000, guid: 1a457d4eb81c4c64b86988f98f60c697, type: 2}
   - {fileID: 11400000, guid: 9d8a53ef2b7a6f547b29f31020fb73b5, type: 2}
-  _goodSentence: This should do the trick, it'll finally get back a wine taste.
+  _goodSentence: "Ca devrait faire l'affaire, je vais enfin retrouver un go\xFBt
+    de vin."
   _perfectSpells:
   - {fileID: 11400000, guid: afe9de5ec58750f42ac53214db40f888, type: 2}
-  _perfectSentence: Fantastic! I'll finally be able to sell a quality wine to my
-    customers!
+  _perfectSentence: "Fantastique ! Je vais enfin pouvoir vendre un vin de qualit\xE9
+    \xE0 mes clients !"
   _specialSpells:
   - {fileID: 11400000, guid: f110eee541b7218429a1ee0db7ccc8db, type: 2}
-  _specialSentence: You're right, I'll start by cleaning my dishes, I hope it'll
-    work.
+  _specialSentence: "Vous avez raison, je vais commencer par nettoyer ma vaisselle,
+    j'esp\xE8re que ca fontionnera."
   _specialScoreValue: 70

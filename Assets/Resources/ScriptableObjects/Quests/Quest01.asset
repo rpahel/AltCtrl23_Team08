@@ -11,29 +11,30 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abd47cdca8f3d42499b2b3267cdb42c4, type: 3}
   m_Name: Quest01
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   _isRandomNPC: 0
   _character: {fileID: 0}
-  _requestSentence: I want a spell for my F-E-E-T to stay warm during winter nights.
+  _requestSentence: J'ai froid aux pieds en hiver. Je voudrais un parchemin qui pourrait
+    me les garder au chaud.
   _maleQuestSound: {fileID: 8300000, guid: 31b3f24b0cbd61d44a7ff414eb10bc33, type: 3}
   _femaleQuestSound: {fileID: 8300000, guid: 16b1717e6aab0d74e8a8fc527c404afc, type: 3}
-  _badSentence: I'll take your parchment, but I doubt it'll help me.
+  _badSentence: Je prends votre parchemin mais je doute que cela m'aide.
   _mediumSpells:
   - {fileID: 11400000, guid: a0a271c6d31c42a48af33de660f68a69, type: 2}
   - {fileID: 11400000, guid: 7a6a030da9a53ca41acb260ef5b6c679, type: 2}
   - {fileID: 11400000, guid: 11852937d323c5c4492bc3c0790fae0c, type: 2}
-  _mediumSentence: I imagined something more powerful, but I trust you.
+  _mediumSentence: J'imaginais quelque chose de plus puissant mais je vous fais confiance.
   _goodSpells:
   - {fileID: 11400000, guid: 9dddeb6493ee4514996399755614d22e, type: 2}
   - {fileID: 11400000, guid: 20604ac93d812f04f982bc098e72d685, type: 2}
   - {fileID: 11400000, guid: 1a457d4eb81c4c64b86988f98f60c697, type: 2}
-  _goodSentence: My feet will be nice and warm with this spell.
+  _goodSentence: Mes pieds seront bien au chaud avec ce sort.
   _perfectSpells:
   - {fileID: 11400000, guid: 6f0fe44baade9fa448ab6bc848855f62, type: 2}
-  _perfectSentence: It's perfect, thank you, with this my feet will never be cold
-    again!
+  _perfectSentence: "C'est parfait merci, avec \xE7a mes pieds n'auront plus jamais
+    froid !"
   _specialSpells:
   - {fileID: 11400000, guid: dbb604da507cb924db9a3a76aed9b1ed, type: 2}
-  _specialSentence: I'll probably lose my house in the process, but it'll be worth
-    it.
+  _specialSentence: "Je vais surement perdre ma maison dans le processus mais \xE7a
+    vaudra le coup."
   _specialScoreValue: 80
