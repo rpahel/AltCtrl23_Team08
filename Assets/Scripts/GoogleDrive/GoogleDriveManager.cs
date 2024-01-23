@@ -74,12 +74,17 @@ public class GoogleDriveManager : MonoBehaviour
         string Path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyPictures) + "\\SGMSS";
         string FileName =
             Now.Year.ToString("0000") +
+            '-' +
             Now.Month.ToString("00") +
+            '-' +
             Now.Day.ToString("00") +
             '_' +
             Now.Hour.ToString("00") +
+            'h' +
             Now.Minute.ToString("00") +
+            'm' +
             Now.Second.ToString("00") +
+            's' +
             ".jpg";
 
         if(!Directory.Exists(Path))
