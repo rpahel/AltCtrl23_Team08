@@ -35,6 +35,6 @@ MonoBehaviour:
     froid !"
   _specialSpells:
   - {fileID: 11400000, guid: dbb604da507cb924db9a3a76aed9b1ed, type: 2}
-  _specialSentence: "Je vais surement perdre ma maison dans le processus mais \xE7a
-    vaudra le coup."
+  _specialSentence: Je vais surement perdre ma maison dans le processus mais ca vaudra
+    le coup.
   _specialScoreValue: 80

@@ -36,6 +36,6 @@ MonoBehaviour:
   _specialSpells:
   - {fileID: 11400000, guid: 3052db1212aa1f440a10ad30fd359cea, type: 2}
   - {fileID: 11400000, guid: dbb604da507cb924db9a3a76aed9b1ed, type: 2}
-  _specialSentence: "Je trouve \xE7a un peu excessif, mais au moins ca me permettra
-    de retrouver la paix."
+  _specialSentence: Je trouve ca un peu excessif, mais au moins ca me permettra de
+    retrouver la paix.
   _specialScoreValue: 30
