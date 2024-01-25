@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour, IDebug
     [SerializeField] private Spell[] _spells;
     [SerializeField] private Pose _defaultTypePose;
     [SerializeField] private Pose _defaultEffectPose;
-    [SerializeField] private GameObject _particulesManager;
+    [SerializeField] private ParticlesManager _particulesManager;
 
     private int _roundNum;
     private int _score;
@@ -179,6 +179,9 @@ public class GameManager : MonoBehaviour, IDebug
         _playerPoses[0] = _defaultEffectPose;
         _currentSpell = null;
 
+        _aiManager.GetBridge.SetPose(1, "Vide");
+        _aiManager.GetBridge.SetPose(0, "Vide");
+
         if (_roundNum >= _roundCount + 1 || _questBuffer.Count == 0)
         {
             _npc.SetActive(false);
@@ -283,7 +286,7 @@ public class GameManager : MonoBehaviour, IDebug
         
         yield return new WaitForSeconds(_timeBeforeTakingPose);
 
-        _particulesManager.SetActive(true);
+        _particulesManager.enabled = true;
 
         //_aiManager.GetBridge.StartRecordingPoses();
 
@@ -329,7 +332,7 @@ public class GameManager : MonoBehaviour, IDebug
 
         yield return new WaitForSeconds(_timeBeforePhotoHiding);
 
-        _particulesManager.SetActive(false);
+        _particulesManager.enabled = false;
         _webcam.DoEndAnimation();
 
         yield return new WaitForSeconds(_timeBeforeNextRound);
@@ -370,21 +373,20 @@ public class GameManager : MonoBehaviour, IDebug
         {
             if (id != _currentQuest.SpecialSpells[i].Id) continue;
 
-            if (_currentQuest.SpecialScoreValue is >= 0 and < 30)
+            switch (_currentQuest.SpecialScoreValue)
             {
-                UpdateUI(_currentCharacter.BadSprite, _currentQuest.SpecialSentence);
-            }
-            else if (_currentQuest.SpecialScoreValue is >= 30 and < 59)
-            {
-                UpdateUI(_currentCharacter.NeutralSprite, _currentQuest.SpecialSentence);
-            }
-            else if (_currentQuest.SpecialScoreValue is >= 60 and < 79)
-            {
-                UpdateUI(_currentCharacter.GoodSprite, _currentQuest.SpecialSentence);
-            }
-            else
-            {
-                UpdateUI(_currentCharacter.PerfectSprite, _currentQuest.SpecialSentence);
+                case >= 0 and < 30:
+                    UpdateUI(_currentCharacter.BadSprite, _currentQuest.SpecialSentence);
+                    break;
+                case >= 30 and < 59:
+                    UpdateUI(_currentCharacter.NeutralSprite, _currentQuest.SpecialSentence);
+                    break;
+                case >= 60 and < 79:
+                    UpdateUI(_currentCharacter.GoodSprite, _currentQuest.SpecialSentence);
+                    break;
+                default:
+                    UpdateUI(_currentCharacter.PerfectSprite, _currentQuest.SpecialSentence);
+                    break;
             }
             
             UpdateScore(_currentQuest.SpecialScoreValue);

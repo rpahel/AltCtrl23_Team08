@@ -123,11 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &67635893 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1283200626776220928, guid: bc6fbd1f4fecd9c4aa982363b8df7c00, type: 3}
+--- !u!114 &67635894 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8014137842718372139, guid: bc6fbd1f4fecd9c4aa982363b8df7c00, type: 3}
   m_PrefabInstance: {fileID: 711133023}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34bcf79ece3233d4da9503330e6ca103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &108887258 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3587673774038313437, guid: cdcfdadeeb2fc8140b9267cf86fdcdb1, type: 3}
@@ -368,7 +374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1283200626776220928, guid: bc6fbd1f4fecd9c4aa982363b8df7c00, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7203200256268263768, guid: bc6fbd1f4fecd9c4aa982363b8df7c00, type: 3}
       propertyPath: m_LocalPosition.x
@@ -713,7 +719,7 @@ PrefabInstance:
     - target: {fileID: 7607571666723518879, guid: e97176a17985eb64db8351087d2c8980, type: 3}
       propertyPath: _particulesManager
       value: 
-      objectReference: {fileID: 67635893}
+      objectReference: {fileID: 67635894}
     - target: {fileID: 7607571666723518879, guid: e97176a17985eb64db8351087d2c8980, type: 3}
       propertyPath: _characterBodyImage
       value: 
