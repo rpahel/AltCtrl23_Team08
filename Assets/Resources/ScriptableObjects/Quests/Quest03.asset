@@ -14,29 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isRandomNPC: 0
   _character: {fileID: 0}
-  _requestSentence: "J'ai achet\xE9 une armure aux ench\xE8res mais je n'avais pas
-    remarqu\xE9 qu'elle \xE9tait \xE0 taille de nain."
+  _requestSentence: J'ai achete une armure aux encheres mais je n'avais pas remarque
+    qu'elle etait a taille de nain.
   _maleQuestSound: {fileID: 8300000, guid: cef039d17543dd64ba04490148e838e5, type: 3}
   _femaleQuestSound: {fileID: 8300000, guid: 3ec27fb3049a58243813ea875049a690, type: 3}
-  _badSentence: "J'ai du mal \xE0 m'imaginer votre vision de la chose. Mais je vous
-    fais confiance."
+  _badSentence: J'ai du mal a m'imaginer votre vision de la chose. Mais je vous fais
+    confiance.
   _mediumSpells:
   - {fileID: 11400000, guid: f5c2cb065f8345844a90d49e9157031c, type: 2}
   - {fileID: 11400000, guid: 946ff9d27a94f2f429cdeb35edb05e50, type: 2}
   - {fileID: 11400000, guid: 90b46de26bf9a9947baee1f217b67e1c, type: 2}
-  _mediumSentence: "Ca pourrait \xEAtre une bonne alternative. Mais j'ai peur que
-    cela l'ab\xEEme..."
+  _mediumSentence: Ca pourrait etre une bonne alternative. Mais j'ai peur que cela
+    l'abime...
   _goodSpells:
   - {fileID: 11400000, guid: 8cb8d100a62f94c4dac49b11c0abf73b, type: 2}
   - {fileID: 11400000, guid: 7a6a030da9a53ca41acb260ef5b6c679, type: 2}
   - {fileID: 11400000, guid: 98cd56ae78274394da800b889e3ab088, type: 2}
-  _goodSentence: "Je vais pouvoir la mettre \xE0 ma taille comme \xE7a."
+  _goodSentence: Je vais pouvoir la mettre a ma taille comme ca.
   _perfectSpells:
   - {fileID: 11400000, guid: 0e51b008d484130458f0e8ed0e73ca9e, type: 2}
-  _perfectSentence: "Ahah ! Avec \xE7a je serai invincible !"
+  _perfectSentence: Ahah ! Avec ca je serai invincible !
   _specialSpells:
   - {fileID: 11400000, guid: 3052db1212aa1f440a10ad30fd359cea, type: 2}
   - {fileID: 11400000, guid: dbb604da507cb924db9a3a76aed9b1ed, type: 2}
-  _specialSentence: "Je ne pourrai pas mettre mon armure avec \xE7a, mais au moins
-    je pourrai me venger du vendeur. Et r\xE9cup\xE9rer mon argent."
+  _specialSentence: Je ne pourrai pas mettre mon armure avec ca, mais au moins je
+    pourrai me venger du vendeur. Et recuperer mon argent.
   _specialScoreValue: 60

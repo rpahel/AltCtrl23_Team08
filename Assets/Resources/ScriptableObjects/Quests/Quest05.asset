@@ -14,30 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isRandomNPC: 0
   _character: {fileID: 0}
-  _requestSentence: "Je n'aime pas le grand arbre du temple, il me g\xE2che la vue
-    le matin."
+  _requestSentence: Je n'aime pas le grand arbre du temple, il me geche la vue le
+    matin.
   _maleQuestSound: {fileID: 8300000, guid: e028bd0fcb500664eb267745a30d1dbb, type: 3}
   _femaleQuestSound: {fileID: 8300000, guid: 259a9b95f47cdd549a51fdf3e899f043, type: 3}
-  _badSentence: "Meh... Je ne vois pas comment \xE7a pourrait r\xE9gler mon probl\xE8me
-    d'arbre."
+  _badSentence: Meh... Je ne vois pas comment ca pourrait regler mon probleme d'arbre.
   _mediumSpells:
   - {fileID: 11400000, guid: 0c37f9d8aa834b641acf1b3b8a39adf9, type: 2}
   - {fileID: 11400000, guid: 2b2c546bdd44310428509ad52a9457c4, type: 2}
   - {fileID: 11400000, guid: ce55d1f5525b93443b380a77e42a134d, type: 2}
-  _mediumSentence: "Ce n'est pas ces sorts qui feront le gros du travail, mais merci
-    quand m\xEAme."
+  _mediumSentence: Ce n'est pas ce sort qui fera le gros du travail, mais merci quand
+    meme.
   _goodSpells:
   - {fileID: 11400000, guid: 3505f568205a1c542bd897138c3e19cc, type: 2}
   - {fileID: 11400000, guid: 035486f7ae969164e93aad987c8eb48e, type: 2}
   - {fileID: 11400000, guid: 11852937d323c5c4492bc3c0790fae0c, type: 2}
-  _goodSentence: "C'est une bonne solution, m\xEAme si je vais s\xFBrement me faire
-    des ennemis dans le temple."
+  _goodSentence: C'est une bonne solution, meme si je vais surement me faire des
+    ennemis dans le temple.
   _perfectSpells:
   - {fileID: 11400000, guid: 2b4481b2bc8f51f4ab8fb7ec9fe25da9, type: 2}
-  _perfectSentence: "La vue sera bien plus belle d\xE9sormais, et sans me causer
-    de probl\xE8me avec l'\xE8glise."
+  _perfectSentence: La vue sera bien plus belle desormais, et sans me causer de probleme
+    avec l'eglise.
   _specialSpells:
   - {fileID: 11400000, guid: ef2e1ccad2243ff41812504579971aa9, type: 2}
-  _specialSentence: "Je n'aurai plus de probl\xE8me avec l'arbre, mais je n'imaginais
-    pas d\xE9m\xE9nager toute ma maison..."
+  _specialSentence: Je n'aurai plus de probleme avec l'arbre, mais je n'imaginais
+    pas demenager toute ma maison...
   _specialScoreValue: 40

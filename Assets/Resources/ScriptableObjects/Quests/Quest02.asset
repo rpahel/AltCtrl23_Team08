@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isRandomNPC: 0
   _character: {fileID: 0}
-  _requestSentence: "C'est terrible ! Mon employ\xE9 a fait l'erreur de m\xE9langer
-    mon vin avec de l'eau ! Le go\xFBt est horrible, qu'est ce que je vais bien pouvoir
-    faire ?"
+  _requestSentence: C'est terrible ! Mon employe a fait l'erreur de melanger mon
+    vin avec de l'eau ! Le gout est horrible, qu'est-ce que je vais bien pouvoir
+    faire ?
   _maleQuestSound: {fileID: 8300000, guid: 549dcc88fcfc0f04eaac8f44d285cf25, type: 3}
   _femaleQuestSound: {fileID: 8300000, guid: 078f292938ab0034ca93cb0be5bce654, type: 3}
   _badSentence: Hum... Ok, je vais croire que cela fonctionnera mais j'en doute.
@@ -24,19 +24,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b634fec21ffca0d4280e817747019101, type: 2}
   - {fileID: 11400000, guid: 2b2c546bdd44310428509ad52a9457c4, type: 2}
   - {fileID: 11400000, guid: 434988535a948f94e92d45a4fd7a1ec4, type: 2}
-  _mediumSentence: "Ca am\xE9liorera surement le go\xFBt, c'est d\xE9j\xE0 \xE7a."
+  _mediumSentence: Ca ameliorera surement le gout, c'est deja ca.
   _goodSpells:
   - {fileID: 11400000, guid: 6b467d675122e7d4ab71122147e18550, type: 2}
   - {fileID: 11400000, guid: 1a457d4eb81c4c64b86988f98f60c697, type: 2}
   - {fileID: 11400000, guid: 9d8a53ef2b7a6f547b29f31020fb73b5, type: 2}
-  _goodSentence: "Ca devrait faire l'affaire, je vais enfin retrouver un go\xFBt
-    de vin."
+  _goodSentence: Ca devrait faire l'affaire, je vais enfin retrouver un gout de vin.
   _perfectSpells:
   - {fileID: 11400000, guid: afe9de5ec58750f42ac53214db40f888, type: 2}
-  _perfectSentence: "Fantastique ! Je vais enfin pouvoir vendre un vin de qualit\xE9
-    \xE0 mes clients !"
+  _perfectSentence: Fantastique ! Je vais enfin pouvoir vendre un vin de qualite
+    a mes clients !
   _specialSpells:
   - {fileID: 11400000, guid: f110eee541b7218429a1ee0db7ccc8db, type: 2}
-  _specialSentence: "Vous avez raison, je vais commencer par nettoyer ma vaisselle,
-    j'esp\xE8re que ca fontionnera."
+  _specialSentence: Vous avez raison, je vais commencer par nettoyer ma vaisselle,
+    j'espere que ca fontionnera.
   _specialScoreValue: 70

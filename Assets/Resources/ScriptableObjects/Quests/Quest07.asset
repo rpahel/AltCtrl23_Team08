@@ -14,28 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isRandomNPC: 0
   _character: {fileID: 0}
-  _requestSentence: "J'ai des com\xE9diens, une sc\xE8ne couverte et un rideau. Pour
-    que mon spectacle soit parfait il ne me manque plus qu'un public. Vous pouvez
-    m'en apporter un ?"
+  _requestSentence: J'ai des comediens, une scene couverte et un rideau. Pour que
+    mon spectacle soit parfait il ne me manque plus qu'un public. Vous pouvez m'en
+    apporter un ?
   _maleQuestSound: {fileID: 8300000, guid: 5642461f98c22a0419f337e7ad277f1a, type: 3}
   _femaleQuestSound: {fileID: 8300000, guid: 1d11a615cccf0274581e23895faef907, type: 3}
-  _badSentence: "D\xE9cid\xE9ment, vous ne comprenez rien \xE0 l'art..."
+  _badSentence: Decidement, vous ne comprenez rien a l'art...
   _mediumSpells:
   - {fileID: 11400000, guid: 54267619ff259804893ec4d7122a506d, type: 2}
   - {fileID: 11400000, guid: 9996f081e2f0e4c428c1c9ce91ae7d05, type: 2}
   - {fileID: 11400000, guid: 8ea5231e2577d8047926816010461bc5, type: 2}
-  _mediumSentence: "Ce sort est... int\xE9ressant. Je verrai bien s'il va fonctionner."
+  _mediumSentence: Ce sort est... interessant. Je verrai bien s'il va fonctionner.
   _goodSpells:
   - {fileID: 11400000, guid: 0c37f9d8aa834b641acf1b3b8a39adf9, type: 2}
   - {fileID: 11400000, guid: 6f54c68ee147c2648bb18875fb0f89c3, type: 2}
   - {fileID: 11400000, guid: 946ff9d27a94f2f429cdeb35edb05e50, type: 2}
-  _goodSentence: "J'aurais imagin\xE9 quelque chose d'un peu plus efficace et imm\xE9diat
-    mais j'ai confiance en ce parchemin!"
+  _goodSentence: J'aurais imagine quelque chose d'un peu plus efficace et immediat
+    mais j'ai confiance en ce parchemin !
   _perfectSpells:
   - {fileID: 11400000, guid: 8806a7e54dfc97c46b59a959069a00c2, type: 2}
-  _perfectSentence: "Le peuple entier d\xE9couvrira mes oeuvres d\xE9sormais."
+  _perfectSentence: Le peuple entier decouvrira mes oeuvres desormais.
   _specialSpells:
   - {fileID: 11400000, guid: ef2e1ccad2243ff41812504579971aa9, type: 2}
-  _specialSentence: "Bonne id\xE9e, je vais d\xE9placer la sc\xE8ne sur la place
-    du village, personne ne pourra passer sans la voir !"
+  _specialSentence: Bonne idee, je vais deplacer la scene sur la place du village,
+    personne ne pourra passer sans la voir !
   _specialScoreValue: 90
